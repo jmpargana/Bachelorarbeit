@@ -1,8 +1,17 @@
 import React from "react";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-const topics: Array<string> = ["mathematics", "physics", "computer science"];
+import Grid from "@material-ui/core/Grid";
+import WelcomeScreen from './WelcomeScreen';
 
 export default function Home() {
-  return <Autocomplete id="combo-box-demo" options={topics} />;
+  return (
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: "80vh" }}
+    >
+      <WelcomeScreen />
+    </Grid>
+  );
 }
