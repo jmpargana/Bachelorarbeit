@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
@@ -31,7 +32,7 @@ export default function WelcomeScreen() {
       </Grid>
       <Box m={5}></Box>
       <Grid container direction="column" justify="center" alignItems="center">
-        <Button size="large" variant="contained" color="primary" >
+        <Button size="large" variant="contained" color="primary" to="/topics" component={Link}>
           Get Started
         </Button>
       </Grid>

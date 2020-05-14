@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const routes: { [key: string]: string } = {
   Home: "/",
   Topics: "/topics",
-  "Upload Question": "/upload-question"
 };
 
 const useStyles = makeStyles(theme => ({
@@ -25,8 +24,8 @@ export default function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar className={classes.appbar}>
-        {Object.keys(routes).map(route => (
-          <Button color="inherit" to={routes[route]} component={Link}>
+        {Object.keys(routes).map((route, index) => (
+          <Button key={`route-${index}`}color="inherit" to={routes[route]} component={Link}>
             {route}
           </Button>
         ))}
