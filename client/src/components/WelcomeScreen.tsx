@@ -16,7 +16,7 @@ const steps: Array<string> = [
 
 export default function WelcomeScreen() {
   return (
-    <Grid direction="column" justify="space-between" alignItems="center">
+    <Grid container direction="column" justify="space-between" alignItems="center">
       <Grid item>
         <Typography variant="h4">Use your Smart Speaker to assist you studying!</Typography>
         <Box m={5}></Box>
