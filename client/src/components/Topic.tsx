@@ -4,20 +4,11 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import TextBooksExtension from './TextBooksExtension';
 import QuestionExtension from "./QuestionExtension";
+import Textbook from '../models/Textbook';
+import Question from '../models/Question';
 
 // For server requests
 /* import axios from 'axios'; */
-
-interface Textbook {
-  title: string;
-  body: string;
-}
-
-interface Question {
-  question: string;
-  answers: Array<string>;
-  correct: number;
-}
 
 // TODO: this will be loaded from server
 const mockTexts: Array<Textbook> = [
@@ -70,7 +61,7 @@ export default function Topic() {
         <Typography variant="h2">Topic</Typography>
       </Grid>
       <Box m={1}></Box>
-      <Grid container direction="row" justify="space-around" alignItems="flex-start">
+      <Grid container direction="row" justify="space-evenly" alignItems="flex-start">
         <TextBooksExtension textbooks={mockTexts} />
         <QuestionExtension questions={mockQuestions} />
       </Grid>

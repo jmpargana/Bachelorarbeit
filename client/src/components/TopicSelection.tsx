@@ -5,7 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { Button } from "@material-ui/core";
+import CreateTopic from './CreateTopic';
+// import axios from 'axios';
 
 // TODO: This will be loaded and uploaded to server
 const topics: Array<string> = ["mathematics", "physics", "computer science"];
@@ -47,7 +48,7 @@ export default function TopicSelection() {
       </Grid>
       <Box m={2}></Box>
       <Grid item>
-        <Button size="large" variant="contained" color="primary">Create</Button>
+        <CreateTopic />
       </Grid>
     </Grid>
   );
