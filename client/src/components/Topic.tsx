@@ -6,8 +6,6 @@ import TextBooksExtension from './TextBooksExtension';
 import QuestionExtension from "./QuestionExtension";
 import Textbook from '../models/Textbook';
 import Question from '../models/Question';
-
-// For server requests
 /* import axios from 'axios'; */
 
 // TODO: this will be loaded from server

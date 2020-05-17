@@ -41,7 +41,7 @@ export default function QuestionExtension(props: {
             <List>
               {question.answers.map((answer, indexAnswer) => (
                 <ListItem>
-                  <ListItemIcon>{question.correct == indexAnswer ? <CheckIcon /> : null}</ListItemIcon>
+                  <ListItemIcon>{question.correct === indexAnswer ? <CheckIcon /> : null}</ListItemIcon>
                   <ListItemText primary={answer} key={`question${index}answer${indexAnswer}`} />
                 </ListItem>
               ))}
