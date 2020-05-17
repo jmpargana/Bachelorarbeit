@@ -26,27 +26,27 @@ export default function Navbar() {
   return (
     <AppBar position="static">
       <Toolbar className={classes.appbar}>
-        {Object.keys(routes).map((route, index) => (
-          <Button
-            key={`route-${index}`}
-            color="inherit"
-            to={routes[route]}
-            component={Link}
-          >
-            {route}
-          </Button>
-        ))}
-        <div>
         {!isAuthenticated ? (
           <Button color="inherit" onClick={() => loginWithRedirect({})}>
             Log in
           </Button>
         ) : (
-          <Button color="inherit" onClick={() => logout()}>
-            Log out
-          </Button>
+          <div>
+            {Object.keys(routes).map((route, index) => (
+              <Button
+                key={`route-${index}`}
+                color="inherit"
+                to={routes[route]}
+                component={Link}
+              >
+                {route}
+              </Button>
+            ))}
+            <Button color="inherit" onClick={() => logout()}>
+              Log out
+            </Button>
+          </div>
         )}
-        </div>
       </Toolbar>
     </AppBar>
   );

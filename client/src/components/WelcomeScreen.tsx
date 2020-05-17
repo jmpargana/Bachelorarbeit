@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 const steps: Array<string> = [
   "Create or join a topic",
   "Upload your multiple choice questions",
+  "Import the AWS functions",
   "Interact with your smart speaker"
 ];
 
@@ -30,7 +31,7 @@ export default function WelcomeScreen() {
           ))}
         </List>
       </Grid>
-      <Box m={5}></Box>
+      <Box m={3}></Box>
       <Grid container direction="column" justify="center" alignItems="center">
         <Button size="large" variant="contained" color="primary" to="/topics" component={Link}>
           Get Started

@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import TopicSelection from "./components/TopicSelection";
 import Spinner from './components/Spinner';
+import PrivateRoute from './components/PrivateRoute';
 
 export default function App() {
   const { loading } = useAuth0();
@@ -23,8 +24,8 @@ export default function App() {
         </header>
         <Switch>
           <Route path="/" exact component={Home}></Route>
-          <Route path="/topics" exact component={TopicSelection}></Route>
-          <Route path="/topic/:topicId" exact component={Topic}></Route>
+          <PrivateRoute path="/topics" component={TopicSelection} />
+          <PrivateRoute path="/topic/:topicId" component={Topic} />
         </Switch>
       </Router>
     </div>
