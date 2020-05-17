@@ -40,9 +40,9 @@ export default function QuestionExtension(props: {
           <ExpansionPanelDetails>
             <List>
               {question.answers.map((answer, indexAnswer) => (
-                <ListItem>
+                <ListItem key={`question-${index}-answer-${indexAnswer}`}>
                   <ListItemIcon>{question.correct === indexAnswer ? <CheckIcon /> : null}</ListItemIcon>
-                  <ListItemText primary={answer} key={`question${index}answer${indexAnswer}`} />
+                  <ListItemText primary={answer} />
                 </ListItem>
               ))}
             </List>
