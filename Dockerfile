@@ -16,6 +16,7 @@ WORKDIR /app
 # Add mods to pull any dependencies
 RUN go get github.com/JalfResi/justext
 RUN go get code.sajari.com/docconv/...
+RUN go get go.mongodb.org/mongo-driver/mongo
 
 # Compile the binary
 RUN go build -o main .
