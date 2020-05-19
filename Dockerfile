@@ -19,7 +19,7 @@ RUN go get code.sajari.com/docconv/...
 RUN go get go.mongodb.org/mongo-driver/mongo
 
 # Compile the binary
-RUN go build -o main .
+RUN go build -o server server/*.go
 
 # Start web server
-CMD ["/app/main"]
+CMD ["/app/server"]
