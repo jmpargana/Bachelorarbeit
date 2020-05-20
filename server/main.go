@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/jmpargana/Bachelorarbeit/server/router"
 	"log"
 	"net/http"
+	"server/router"
 )
 
 var port = flag.Int("p", 8080, "port to run app")

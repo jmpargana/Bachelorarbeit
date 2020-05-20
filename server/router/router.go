@@ -1,15 +1,15 @@
 package router
 
 import (
-	"../middleware"
 	"github.com/gorilla/mux"
+	"server/middleware"
 )
 
 func Router() *mux.Router {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/api/question", middleware.GetAllQuestions).Methods("Get", "OPTIONS")
+	router.HandleFunc("/api/question", middleware.TestHandler).Methods("Get", "OPTIONS")
 
 	return router
 }
