@@ -18,5 +18,5 @@ func main() {
 
 	fmt.Printf("Starting server of the port %d\n", *port)
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), r))
 }
