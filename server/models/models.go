@@ -25,3 +25,9 @@ type Textbook struct {
 	Title string             `bson:"title,omitempty"`
 	Body  string             `bson:"body,omitempty"`
 }
+
+type Topic struct {
+	ID        primitive.ObjectID `bson:"_id,omitempty"`
+	Textbooks []Textbook         `bson:"textbooks,omitempty"`
+	Questions []Question         `bson:"questions,omitempty"`
+}
