@@ -1,4 +1,4 @@
-package main
+package db
 
 import (
 	"context"
@@ -20,3 +20,19 @@ func connectoToDB() (mongo.Client, error) {
 }
 
 func recover() {}
+
+// NOTE: Maybe one function is enough
+func GetQuestions(topic string) string {
+	// Fetch Questions from mongo
+	return "mock"
+}
+
+func GetTextbooks(topic string) string {
+	// Fetch Questions from mongo
+	return "mock"
+}
+
+func GetTopics(topic string) string {
+	// Fetch Questions from mongo
+	return "mock"
+}
