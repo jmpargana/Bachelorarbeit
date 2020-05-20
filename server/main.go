@@ -1,21 +1,22 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"html"
+	"github.com/jmpargana/Bachelorarbeit/server/router"
 	"log"
 	"net/http"
 )
 
+var port = flag.Int("p", 8080, "port to run app")
+
 func main() {
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-	})
+	flag.Parse()
 
-	http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hi")
-	})
+	r := router.Router()
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Printf("Starting server of the port %d\n", *port)
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
