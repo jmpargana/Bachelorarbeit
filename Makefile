@@ -15,3 +15,16 @@ exec:
 		-p 8888:8888 \
 		bachelor-arbeit-server \
 		/bin/bash
+
+
+// This section is not ready
+db:
+	docker-compose build
+
+
+db_run:
+	docker-compose up -d
+
+
+help:
+	cat Makefile

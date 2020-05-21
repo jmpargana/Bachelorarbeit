@@ -1,0 +1,25 @@
+version '3'
+
+services:
+  db:
+    image: mongo:latest
+    # container_name: app
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    ports: 
+      - 27017:27017
+    command: mongod --logpath=/dev/null
+
+  app:
+    image: bachelorarbeit
+    # container_name: bachelorarbeit
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    depends_on:
+      - db
