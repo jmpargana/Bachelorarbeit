@@ -24,5 +24,8 @@ func Router() *mux.Router {
 	router.HandleFunc("/api/topic/{topicID}/question/{questionID}", middleware.DeleteQuestion).Methods("DELETE", "OPTIONS")
 	router.HandleFunc("/api/topic/{topicID}/textbook/{textbookID}", middleware.DeleteTextbook).Methods("DELETE", "OPTIONS")
 
+	// Convert PDF to Text
+	router.HandleFunc("/api/converter", middleware.Converter).Methods("POST", "OPTIONS")
+
 	return router
 }
