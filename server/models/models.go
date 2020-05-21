@@ -25,8 +25,12 @@ type Textbook struct {
 // Topic is the JSON struct to be transported in any request
 // as well as being saved in mongo.
 type Topic struct {
-	ID        primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	Name      string             `bson:"name,omitempty" json:"name,omitempty"`
-	Textbooks []Textbook         `bson:"textbooks,omitempty" json:"textbooks,omitempty"`
-	Questions []Question         `bson:"questions,omitempty" json:"questions,omitempty"`
+	ID   primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	Name string             `bson:"name,omitempty" json:"name,omitempty"`
+
+	// This is not needed for now.
+	// It might be needed with the Alexa API calls
+
+	// Textbooks []Textbook         `bson:"textbooks,omitempty" json:"textbooks,omitempty"`
+	// Questions []Question         `bson:"questions,omitempty" json:"questions,omitempty"`
 }

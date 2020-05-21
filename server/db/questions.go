@@ -8,7 +8,7 @@ import (
 	"server/models"
 )
 
-// Get all the Topics from Mongo and format them in json.
+// Get all the topic's questions from Mongo and format them in json.
 func GetQuestions(topic string) ([]models.Question, error) {
 
 	var questions []models.Question
