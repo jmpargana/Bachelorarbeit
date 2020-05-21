@@ -23,7 +23,7 @@ func PostTextbook(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteTextbook(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
+	vars := mux.Vars(r)
 	db.DeleteTextbook(vars["topicID"], vars["textbookID"])
 	// return status
 }

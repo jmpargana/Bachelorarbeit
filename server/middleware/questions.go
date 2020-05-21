@@ -23,7 +23,7 @@ func PostQuestion(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteQuestion(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
+	vars := mux.Vars(r)
 	db.DeleteQuestion(vars["topicID"], vars["questionID"])
 	// return status
 }
