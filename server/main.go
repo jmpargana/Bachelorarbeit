@@ -22,7 +22,7 @@ func main() {
 
 	db.ConnectToDB(*mongo) // Initiate connection to mongodb
 
-	fmt.Printf("Starting server of the port %d\n", *port)
+	log.Printf("Starting server in port: %d\n", *port)
 
 	// Start server
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), r))

@@ -7,6 +7,7 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 type Question struct {
 	ID            primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	Title         string             `bson:"title,omitempty" json:"title,omitempty"`
+	Topic         string             `bson:"topic,omitempty" json:"topic,omitempty"`
 	Author        string             `bson:"author,omitempty" json:"author,omitempty"`
 	Answers       []string           `bson:"answers,omitempty" json:"answers,omitempty"`
 	CorrectAnswer int                `bson:"correct,omitempty" json:"correct,omitempty"`
@@ -17,6 +18,7 @@ type Question struct {
 type Textbook struct {
 	ID    primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	Title string             `bson:"title,omitempty" json:"title,omitempty"`
+	Topic string             `bson:"topic,omitempty" json:"topic,omitempty"`
 	Body  string             `bson:"body,omitempty" json:"body,omitempty"`
 }
 
