@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -6,52 +6,29 @@ import TextBooksExtension from './TextBooksExtension';
 import QuestionExtension from "./QuestionExtension";
 import Textbook from '../models/Textbook';
 import Question from '../models/Question';
-/* import axios from 'axios'; */
+import axios from 'axios';
 
-// TODO: this will be loaded from server
-const mockTexts: Array<Textbook> = [
-  { title: "Textbook 1 about mathematics", body: "Long text with many paragraphs" },
-
-  { title: "Textbook 1 about mathematics", body: "Long text with many paragraphs" },
-  { title: "Textbook 1 about mathematics", body: "Long text with many paragraphs" },
-  { title: "Textbook 1 about mathematics", body: "Long text with many paragraphs" }
-];
-
-// TODO: this will be loaded from server
-const mockQuestions: Array<Question> = [
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  },
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  },
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  },
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  },
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  },
-  {
-    question: "How many things does a thing have?",
-    answers: ["One thing", "Two things", "no thing", "your thing"],
-    correct: 3
-  }
-];
+const questionAPI: string = "http://localhost:8080/api/questions/"
+const textbookAPI: string = "http://localhost:8080/api/textbooks/"
 
 export default function Topic() {
+  const topicName = location.href.substring(location.href.lastIndexOf('/') + 1)
+  const [questions, setQuestions] = useState(new Array<Question>());
+  const [textbooks, setTextbooks] = useState(new Array<Textbook>())
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const result = await axios(questionAPI + topicName);
+      setQuestions(result.data)
+    }
+    const fetchTextbooks = async () => {
+      const result = await axios(textbookAPI + topicName);
+      setQuestions(result.data)
+    }
+    fetchQuestions()
+    fetchTextbooks()
+  }, [])
+
   return (
     <Grid container direction="column" justify="flex-start" alignItems="center">
       <Box m={3}></Box>
@@ -60,8 +37,8 @@ export default function Topic() {
       </Grid>
       <Box m={1}></Box>
       <Grid container direction="row" justify="space-evenly" alignItems="flex-start">
-        <TextBooksExtension textbooks={mockTexts} />
-        <QuestionExtension questions={mockQuestions} />
+        <TextBooksExtension textbooks={textbooks} />
+        <QuestionExtension questions={questions} />
       </Grid>
     </Grid>
   );
