@@ -11,6 +11,8 @@ import (
 // Get all Topics from db.
 func GetTopics() ([]models.Topic, error) {
 
+	collection := database.Collection("questions")
+
 	var topics []models.Topic
 
 	cur, err := collection.Find(context.TODO(), bson.M{})
@@ -42,6 +44,8 @@ func GetTopics() ([]models.Topic, error) {
 // PostTopic creates a new entry with a topic name in the database.
 func PostTopic(topic models.Topic) error {
 
+	collection := database.Collection("questions")
+
 	if _, err := collection.InsertOne(context.TODO(), topic); err != nil {
 		return err
 	}
@@ -51,6 +55,8 @@ func PostTopic(topic models.Topic) error {
 
 // DeleteTopic deletes an entry from the database.
 func DeleteTopic(topicID string) error {
+
+	collection := database.Collection("questions")
 
 	id, err := primitive.ObjectIDFromHex(topicID)
 	if err != nil {

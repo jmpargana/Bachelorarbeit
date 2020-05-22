@@ -11,7 +11,7 @@ import (
 // collection is a GLOBAL variable in the DB package.
 // It is a pointer to the mongo client and allows other functions inside
 // this package to perform CRUD methods on it
-var collection *mongo.Collection
+var database *mongo.Database
 
 // ConnectToDB will be called to main to create a global variable, which
 // is a pointer to the MongoDB collection
@@ -28,5 +28,11 @@ func ConnectToDB(mongoURI string) {
 		log.Fatal(err)
 	}
 
-	collection = client.Database("Bachelorarbeit").Collection("server")
+	if client.Ping(context.TODO(), nil); err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("Connected to database in: %s", mongoURI)
+
+	database = client.Database("Bachelorarbeit")
 }

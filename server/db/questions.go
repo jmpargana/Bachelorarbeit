@@ -11,6 +11,8 @@ import (
 // Get all the topic's questions from Mongo and format them in json.
 func GetQuestions(topic string) ([]models.Question, error) {
 
+	collection := database.Collection("questions")
+
 	var questions []models.Question
 
 	cur, err := collection.Find(context.TODO(), bson.M{"topic": topic})
@@ -42,6 +44,8 @@ func GetQuestions(topic string) ([]models.Question, error) {
 // It contains the information as describe in the models package.
 func PostQuestion(question models.Question) error {
 
+	collection := database.Collection("questions")
+
 	if _, err := collection.InsertOne(context.TODO(), question); err != nil {
 		return err
 	}
@@ -51,6 +55,8 @@ func PostQuestion(question models.Question) error {
 
 // DeleteQuestion deletes a question from database given its id.
 func DeleteQuestion(questionID string) error {
+
+	collection := database.Collection("questions")
 
 	id, err := primitive.ObjectIDFromHex(questionID)
 	if err != nil {
