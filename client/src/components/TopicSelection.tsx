@@ -11,9 +11,6 @@ import axios from "axios";
 
 const topicAPI = "http://localhost:8080/api/topics";
 
-// TODO: This will be loaded and uploaded to server
-// const topics: Array<string> = ["mathematics", "physics", "computer science"];
-
 export default function TopicSelection() {
   const [topics, setTopics] = useState(new Array<string>());
   const history = useHistory();

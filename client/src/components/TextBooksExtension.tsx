@@ -8,6 +8,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Box from "@material-ui/core/Box";
 import Textbook from "../models/Textbook";
 import Divider from '@material-ui/core/Divider';
+import CreateNewTextbook from './CreateNewTextbook';
 
 export default function TextBooksExtension(props: {
   textbooks: Array<Textbook>;
@@ -22,6 +23,7 @@ export default function TextBooksExtension(props: {
     <Grid item>
       <Box m={3}></Box>
       <Typography variant="h3">Textbooks</Typography>
+      <CreateNewTextbook />
       {props.textbooks ? props.textbooks.map((text, index) => (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}
