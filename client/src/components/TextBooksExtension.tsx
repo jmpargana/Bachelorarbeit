@@ -22,7 +22,7 @@ export default function TextBooksExtension(props: {
     <Grid item>
       <Box m={3}></Box>
       <Typography variant="h3">Textbooks</Typography>
-      {props.textbooks.map((text, index) => (
+      {props.textbooks ? props.textbooks.map((text, index) => (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}
           key={`panel${index}`}
@@ -36,7 +36,7 @@ export default function TextBooksExtension(props: {
             <Typography>{text.body}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      ))}
+      )) : null}
     </Grid>
   );
 }

@@ -2,6 +2,8 @@ import Textbook from './Textbook';
 import Question from './Question';
 
 export default interface Topic {
-  textbooks: Array<Textbook>;
-  questions: Array<Question>;
+  _id: string;
+  name: string;
+  // textbooks: Array<Textbook>;
+  // questions: Array<Question>;
 }

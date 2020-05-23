@@ -27,7 +27,7 @@ export default function QuestionExtension(props: {
     <Grid item>
       <Typography variant="h3">Questions</Typography>
       <Box m={3}></Box>
-      {props.questions.map((question, index) => (
+      {props.questions ? props.questions.map((question, index) => (
         <ExpansionPanel
           expanded={expanded === `panelQuestion${index}`}
           key={`panelQuestion${index}`}
@@ -48,7 +48,7 @@ export default function QuestionExtension(props: {
             </List>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-      ))}
+      )) : null}
     </Grid>
   );
 }

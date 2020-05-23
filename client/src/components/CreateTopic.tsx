@@ -1,12 +1,15 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-// import axios from 'axios';
+import axios from 'axios';
 
+const topicAPI = "http://localhost:8080/api/topic"; 
+ 
 // TODO: Dialog needs some styling
 const useStyles = makeStyles((theme) => ({
   fieldPadding: {
@@ -16,12 +19,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CreateTopic() {
   const [open, setOpen] = React.useState(false);
+  const [newTopic, setNewTopic] = React.useState("");
+  const history = useHistory();
   const classes = useStyles();
 
   const handleCloseAndCreateNewTopic = () => {
-    // TODO: Perform axios POST request to server to save new topic
-    setOpen(false);
+    const uploadTopic = async () => {
+      const data = JSON.stringify({ 'name': newTopic })
+      const result = await axios.post(topicAPI, data)
+      console.log({result, newTopic})
+    }
+    console.log({newTopic})
+    uploadTopic();
+    history.push(`/topic/${newTopic}`)
+    // setOpen(false);
   };
+
+  function handleNewTopicNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setNewTopic(e.target.value)
+  }
 
   return (
     <>
@@ -41,6 +57,8 @@ export default function CreateTopic() {
         <TextField
           margin="normal"
           className={classes.fieldPadding}
+          value={newTopic}
+          onChange={handleNewTopicNameChange}
           autoFocus
           type="text"
         />
