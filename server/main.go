@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"log"
 	"net/http"
 	"server/db"
@@ -25,5 +26,5 @@ func main() {
 	log.Printf("Starting server in port: %d\n", *port)
 
 	// Start server
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), handlers.CORS()(r)))
 }

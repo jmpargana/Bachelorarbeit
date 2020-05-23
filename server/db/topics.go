@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	// "fmt"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"log"
@@ -11,7 +12,7 @@ import (
 // Get all Topics from db.
 func GetTopics() ([]models.Topic, error) {
 
-	collection := database.Collection("questions")
+	collection := database.Collection("topics")
 
 	var topics []models.Topic
 
@@ -30,7 +31,6 @@ func GetTopics() ([]models.Topic, error) {
 		if err := cur.Decode(&topic); err != nil {
 			log.Fatal(err)
 		}
-
 		topics = append(topics, topic)
 	}
 
@@ -44,7 +44,7 @@ func GetTopics() ([]models.Topic, error) {
 // PostTopic creates a new entry with a topic name in the database.
 func PostTopic(topic models.Topic) error {
 
-	collection := database.Collection("questions")
+	collection := database.Collection("topics")
 
 	if _, err := collection.InsertOne(context.TODO(), topic); err != nil {
 		return err
@@ -56,7 +56,7 @@ func PostTopic(topic models.Topic) error {
 // DeleteTopic deletes an entry from the database.
 func DeleteTopic(topicID string) error {
 
-	collection := database.Collection("questions")
+	collection := database.Collection("topics")
 
 	id, err := primitive.ObjectIDFromHex(topicID)
 	if err != nil {
@@ -64,11 +64,9 @@ func DeleteTopic(topicID string) error {
 	}
 
 	filter := bson.M{"_id": id}
-
 	_, err = collection.DeleteOne(context.TODO(), filter)
 	if err != nil {
 		return err
 	}
-
 	return nil
 }

@@ -12,18 +12,21 @@ import (
 // GetTopics calls the GetTopic method in database which finds all available entries.
 func GetTopics(w http.ResponseWriter, r *http.Request) {
 
+	log.Printf("Call to fetch all topics from: %s", r.URL.Path)
+
 	w.Header().Set("Content-Type", "application/json")
 
 	payload, err := db.GetTopics()
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	json.NewEncoder(w).Encode(payload)
 }
 
 // PostTopic calls the insertOne method from the db package.
 func PostTopic(w http.ResponseWriter, r *http.Request) {
+
+	log.Printf("Call to upload new topic from: %s", r.URL.Path)
 
 	var topic models.Topic
 
