@@ -13,6 +13,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckIcon from '@material-ui/icons/Check';
+import CreateNewQuestion from "./CreateNewQuestion";
 
 export default function QuestionExtension(props: {
   questions: Array<Question>;
@@ -25,8 +26,10 @@ export default function QuestionExtension(props: {
 
   return (
     <Grid item>
+      <Box m={2}></Box>
       <Typography variant="h3">Questions</Typography>
-      <Box m={3}></Box>
+      <Box m={2}></Box>
+      <CreateNewQuestion />
       {props.questions ? props.questions.map((question, index) => (
         <ExpansionPanel
           expanded={expanded === `panelQuestion${index}`}

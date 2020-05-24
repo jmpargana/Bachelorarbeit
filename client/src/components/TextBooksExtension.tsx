@@ -21,8 +21,9 @@ export default function TextBooksExtension(props: {
 
   return (
     <Grid item>
-      <Box m={3}></Box>
+      <Box m={2}></Box>
       <Typography variant="h3">Textbooks</Typography>
+      <Box m={2}></Box>
       <CreateNewTextbook />
       {props.textbooks ? props.textbooks.map((text, index) => (
         <ExpansionPanel
