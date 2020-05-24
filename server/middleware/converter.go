@@ -12,7 +12,7 @@ import (
 func Converter(w http.ResponseWriter, r *http.Request) {
 
 	// Read file from POST request
-	file, handler, err := r.FormFile("textbook")
+	file, _, err := r.FormFile("textbook")
 	if err != nil {
 		log.Fatalf("failed retrieving the PDF file: %v", err)
 		return
@@ -20,7 +20,7 @@ func Converter(w http.ResponseWriter, r *http.Request) {
 	defer file.Close()
 
 	// Convert to TEXT
-	res, err := docconv.ConvertPath(handler.Filename)
+	res, _, err := docconv.ConvertPDF(file)
 	if err != nil {
 		log.Fatalf("failed converting file: %v", err)
 	}

@@ -25,11 +25,11 @@ export default function Topic() {
     };
     const fetchTextbooks = async () => {
       const result = await axios(textbookAPI + topicName);
-      setQuestions(result.data);
+      setTextbooks(result.data);
     };
     fetchQuestions();
     fetchTextbooks();
-  }, []);
+  }, [topicName]);
 
   return (
     <Grid container direction="column" justify="flex-start" alignItems="center">

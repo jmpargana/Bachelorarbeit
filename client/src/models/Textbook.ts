@@ -1,6 +1,6 @@
 
 export default interface Textbook {
-  _id: string,
+  _id: string | undefined,
   title: string,
   body: string,
 }
