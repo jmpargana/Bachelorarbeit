@@ -14,22 +14,22 @@ const textbookAPI: string = "http://localhost:8080/api/textbooks/";
 
 export default function Topic() {
   const location = useLocation();
-  const topicName = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-  const [questions, setQuestions] = useState(new Array<Question>());
-  const [textbooks, setTextbooks] = useState(new Array<Textbook>());
+  const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+  const [questions, setQuestions] = useState<Array<Question>>(new Array<Question>());
+  const [textbooks, setTextbooks] = useState<Array<Textbook>>(new Array<Textbook>());
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const result = await axios(questionAPI + topicName);
+      const result = await axios(questionAPI + topicID);
       setQuestions(result.data);
     };
     const fetchTextbooks = async () => {
-      const result = await axios(textbookAPI + topicName);
+      const result = await axios(textbookAPI + topicID);
       setTextbooks(result.data);
     };
     fetchQuestions();
     fetchTextbooks();
-  }, [topicName]);
+  }, [topicID]);
 
   return (
     <Grid container direction="column" justify="flex-start" alignItems="center">

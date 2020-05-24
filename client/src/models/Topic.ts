@@ -1,8 +1,9 @@
-import Textbook from './Textbook';
-import Question from './Question';
+// import Textbook from './Textbook';
+// import Question from './Question';
+import {ObjectID} from 'mongodb';
 
 export default interface Topic {
-  _id: string | undefined;
+  _id: ObjectID;
   name: string;
   // textbooks: Array<Textbook>;
   // questions: Array<Question>;

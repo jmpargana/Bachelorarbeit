@@ -12,6 +12,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
+import { ObjectID} from "bson";
+import  { useAuth0 } from '../helpers/react-auth0-spa';
 
 // api endpoint to post the textbook to db
 const textbookAPI = "http://localhost:8080/api/textbook";
@@ -20,20 +22,38 @@ const textbookAPI = "http://localhost:8080/api/textbook";
 const pdfConverterAPI = "http://localhost:8080/api/converter";
 
 export default function CreateNewTextbook() {
+  // Variables needed to save in database entry
+  const { user } = useAuth0();
+  const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
+  const userID = user._id;
+
+  // Hooks to deal with inputs
   const fileInput = useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
-  const [newTextbook, setNewTextbook] = React.useState<Textbook>();
+  const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
 
+  /**
+   * This method gets called with the submit button 
+   * It should check if all fields are complete and perform axios post request
+   * If the POST Request was successful, the data should be send to the
+   * parent component to rerender the textbook expandable list
+   */
   const handleUploadNewTextbook = () => {
+    // TODO: Check if all fields are complete
+
+    const textbookID = new ObjectID();
+    const textbook: Textbook = { _id: textbookID, title: title, body: content, topicID, userID};
+    const data = JSON.stringify(textbook)
+
     const uploadTextbook = async () => {
-      const data = JSON.stringify({});
       const result = await axios.post(textbookAPI, data);
-      console.log({ result, newTextbook });
+      console.log({result})
     };
     uploadTextbook();
-    setOpen(false);
-    setNewTextbook({ _id: undefined, title: "thist", body: "that"})
+    // setOpen(false);
+
+    // return new textbook to parent component
   };
 
   /**
@@ -61,7 +81,6 @@ export default function CreateNewTextbook() {
         setContent(result.data)
       }
       fetchTextFromPDF();
-
     }
   }
 
@@ -85,7 +104,7 @@ export default function CreateNewTextbook() {
         <Grid item>
         <DialogContent>
           <Grid container direction="row" justify="center" alignItems="center">
-            <TextField label="Title" />
+            <TextField label="Title" value={title} onChange={(e: any) => setTitle(e.target.value)} />
             <input id="pdf-upload" type="file" onChange={handleUploadPDF} ref={fileInput} />
           </Grid>
           <Box m={5} />

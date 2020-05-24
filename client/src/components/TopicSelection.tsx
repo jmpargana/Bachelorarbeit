@@ -8,24 +8,28 @@ import Typography from "@material-ui/core/Typography";
 import CreateTopic from "./CreateTopic";
 import Topic from '../models/Topic';
 import axios from "axios";
+import { ObjectID } from "mongodb";
 
+// URL with API endpoint to perform get requests
 const topicAPI = "http://localhost:8080/api/topics";
 
 export default function TopicSelection() {
-  const [topics, setTopics] = useState(new Array<string>());
+  const [topics, setTopics] = useState<Array<Topic>>();
   const history = useHistory();
   const value = "";
 
   useEffect(() => {
     const fetchTopics = async () => {
       const result = await axios(topicAPI);
-      result.data.map((topic: Topic) => setTopics(oldTopics => [...oldTopics, topic["name"]]))
+      setTopics(result.data)
     };
     fetchTopics();
   }, []);
 
   function handleRoute(route: string) {
-    history.push(`/topic/${route}`);
+    let topicID: ObjectID;
+    topics?.map(topic => topic["name"] === route ? topicID = topic["_id"] : null)
+    history.push(`/topic/${topicID!.toString()}`);
   }
 
   return (
@@ -46,7 +50,7 @@ export default function TopicSelection() {
           onChange={(event: any, newValue: any) =>
             newValue ? handleRoute(newValue) : null
           }
-          options={topics}
+          options={topics ? topics.map(topic => topic["name"]) : [""]}
           getOptionLabel={(option: string) => option}
           renderInput={(params) => (
             <TextField

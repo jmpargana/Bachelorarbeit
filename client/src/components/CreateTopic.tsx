@@ -7,6 +7,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
+import { ObjectID } from "bson";
 
 const topicAPI = "http://localhost:8080/api/topic"; 
  
@@ -24,15 +25,14 @@ export default function CreateTopic() {
   const classes = useStyles();
 
   const handleCloseAndCreateNewTopic = () => {
+    const newTopicID = new ObjectID();
     const uploadTopic = async () => {
-      const data = JSON.stringify({ 'name': newTopic })
+      const data = JSON.stringify({ '_id': newTopicID, 'name': newTopic })
       const result = await axios.post(topicAPI, data)
       console.log({result, newTopic})
     }
-    console.log({newTopic})
     uploadTopic();
-    history.push(`/topic/${newTopic}`)
-    // setOpen(false);
+    history.push(`/topic/${newTopicID.toString()}`)
   };
 
   function handleNewTopicNameChange(e: React.ChangeEvent<HTMLInputElement>) {

@@ -1,6 +1,10 @@
 
+import {ObjectID} from 'mongodb';
+
 export default interface Textbook {
-  _id: string | undefined,
+  _id: ObjectID;
   title: string,
   body: string,
+  userID: ObjectID,
+  topicID: ObjectID,
 }
