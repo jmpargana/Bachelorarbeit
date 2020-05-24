@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-// import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -23,6 +23,7 @@ const pdfConverterAPI = "http://localhost:8080/api/converter";
 
 export default function CreateNewTextbook() {
   // Variables needed to save in database entry
+  const location = useLocation();
   const { user } = useAuth0();
   const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
   const userID = user._id;

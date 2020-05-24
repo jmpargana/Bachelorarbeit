@@ -33,10 +33,10 @@ func PostTopic(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&topic)
 
 	if err := db.PostTopic(topic); err != nil {
-		// return status 500
-	}
 
-	// return status 200
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
+	}
 }
 
 // DeleteTopic calls the db package method DeleteTopic which deletes entry given an ID.
@@ -45,8 +45,8 @@ func DeleteTopic(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	if err := db.DeleteQuestion(vars["questionID"]); err != nil {
-		// return status err
-	}
 
-	// return status
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
+	}
 }

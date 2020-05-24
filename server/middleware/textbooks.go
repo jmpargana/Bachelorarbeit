@@ -33,10 +33,9 @@ func PostTextbook(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&textbook)
 
 	if err := db.PostTextbook(textbook); err != nil {
-		// return status 500
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
 	}
-
-	// return status 200
 }
 
 // DeleteTextbook calls DeleteTextbook on db and deletes entry given an ID.
@@ -45,8 +44,7 @@ func DeleteTextbook(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	if err := db.DeleteTextbook(vars["textbookID"]); err != nil {
-		// return status err
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
 	}
-
-	// return status
 }

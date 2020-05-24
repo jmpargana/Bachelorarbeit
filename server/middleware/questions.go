@@ -34,10 +34,10 @@ func PostQuestion(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&question)
 
 	if err := db.PostQuestion(question); err != nil {
-		// return status 500
-	}
 
-	// return status 200
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
+	}
 }
 
 // DeleteQuestion is called with the DELETE request and sends the given
@@ -47,8 +47,8 @@ func DeleteQuestion(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	if err := db.DeleteQuestion(vars["questionID"]); err != nil {
-		// return status err
-	}
 
-	// return status
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
+	}
 }
