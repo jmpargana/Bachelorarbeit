@@ -1,8 +1,10 @@
 # Specify the image
 FROM golang:latest
+FROM node:latest
 
 # Update debian and install dependencies
-RUN apt-get update && apt-get install -y poppler-utils wv unrtf tidy npm nodejs
+RUN apt-get update && apt-get install -y poppler-utils wv unrtf tidy
+# RUN npm i npm@latest -g
 
 # Create folder within image to hold source files
 RUN mkdir /app
@@ -11,17 +13,21 @@ RUN mkdir /app
 ADD . /app
 
 # Run all commands inside /app directory
-WORKDIR /app/server
+WORKDIR /app/client
 
 # npm build just to be sure (not a good idea if installed node version is old)
-RUN npm run build --prefix ../client
+RUN npm i && npm run build
+
+WORKDIR /app/server
 
 # Compile the binary
 RUN go install
 
 EXPOSE 8080
-EXPOSE 8000
-EXPOSE 3000
+# EXPOSE 8000
+# EXPOSE 3000
+
+# WORKDIR /app
 
 # Start web server
 CMD ["server"]

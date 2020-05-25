@@ -13,7 +13,8 @@ import (
 
 var (
 	port  = flag.Int("p", 8080, "Chosen Port to run App")
-	mongo = flag.String("mongo", "mongodb://app:27017", "Your MongoDB URI")
+    host = flag.String("h", "0.0.0.0", "host address to run app")
+	mongo = flag.String("m", "mongodb://app:27017", "Your MongoDB URI")
 )
 
 func main() {
@@ -31,7 +32,7 @@ func main() {
 
 	srv := &http.Server{
 		Handler: handlers.CORS()(r),
-		Addr:    fmt.Sprintf("127.0.0.1:%d", *port),
+        Addr:    fmt.Sprintf(":%d", *port),
 		// Good practice: enforce timeouts for servers you create
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
