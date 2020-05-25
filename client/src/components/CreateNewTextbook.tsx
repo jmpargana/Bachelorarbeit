@@ -25,14 +25,15 @@ export default function CreateNewTextbook() {
   // Variables needed to save in database entry
   const location = useLocation();
   const { user } = useAuth0();
+
   const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
-  const userID = user._id;
+  const userEmail = user.email;
 
   // Hooks to deal with inputs
   const fileInput = useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('');
-  const [content, setContent] = React.useState('');
+  const [body, setBody] = React.useState('');
 
   /**
    * This method gets called with the submit button 
@@ -41,20 +42,21 @@ export default function CreateNewTextbook() {
    * parent component to rerender the textbook expandable list
    */
   const handleUploadNewTextbook = () => {
-    // TODO: Check if all fields are complete
+    if (!body || !title) return;
 
-    const textbookID = new ObjectID();
-    const textbook: Textbook = { _id: textbookID, title: title, body: content, topicID, userID};
+    const textbook: Textbook = { _id: new ObjectID(), title, body, topicID, userEmail};
     const data = JSON.stringify(textbook)
+
+    console.log({textbook, data})
 
     const uploadTextbook = async () => {
       const result = await axios.post(textbookAPI, data);
       console.log({result})
+
+      // if successfull append to context
     };
     uploadTextbook();
-    // setOpen(false);
-
-    // return new textbook to parent component
+    setOpen(false);
   };
 
   /**
@@ -79,7 +81,7 @@ export default function CreateNewTextbook() {
             'Content-Type': 'multipart/form-data',
           },
         });
-        setContent(result.data)
+        setBody(result.data)
       }
       fetchTextFromPDF();
     }
@@ -115,7 +117,7 @@ export default function CreateNewTextbook() {
                 fullWidth
                 placeholder="Textbook's Content"
                 label="Content"
-                value={content}
+                value={body}
                 multiline
                 rows={25}
               />

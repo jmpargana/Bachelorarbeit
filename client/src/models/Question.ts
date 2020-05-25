@@ -3,7 +3,7 @@ import {ObjectID} from 'mongodb';
 export default interface Question {
   _id: ObjectID;
   question: string;
-  userID: ObjectID;
+  userEmail: string;
   answers: Array<string>;
   correct: number;
   topicID: ObjectID;

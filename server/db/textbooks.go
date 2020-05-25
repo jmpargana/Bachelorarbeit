@@ -9,13 +9,17 @@ import (
 )
 
 // Get all the textbooks from Mongo and format them in json from a given topic.
-func GetTextbooks(topic string) ([]models.Textbook, error) {
+func GetTextbooks(topicID string) ([]models.Textbook, error) {
 
 	collection := database.Collection("textbooks")
 
-	var textbooks []models.Textbook
+	docID, err := primitive.ObjectIDFromHex(topicID)
+	if err != nil {
+		return nil, err
+	}
 
-	cur, err := collection.Find(context.TODO(), bson.M{"topic": topic})
+	var textbooks []models.Textbook
+	cur, err := collection.Find(context.TODO(), bson.M{"topicID": docID})
 	if err != nil {
 		return nil, err
 	}

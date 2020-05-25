@@ -5,6 +5,6 @@ export default interface Textbook {
   _id: ObjectID;
   title: string,
   body: string,
-  userID: ObjectID,
+  userEmail: string,
   topicID: ObjectID,
 }

@@ -6,9 +6,9 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 // as well as being saved in mongo.
 type Question struct {
 	ID            primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	Title         string             `bson:"title,omitempty" json:"title,omitempty"`
-	Topic         primitive.ObjectID `bson:"topicID,omitempty" json:"topic,omitempty"`
-	Author        primitive.ObjectID `bson:"userID,omitempty" json:"author,omitempty"`
+	Question      string             `bson:"question,omitempty" json:"question,omitempty"`
+	Topic         primitive.ObjectID `bson:"topicID,omitempty" json:"topicID,omitempty"`
+	Author        string             `bson:"userEmail,omitempty" json:"userEmail,omitempty"`
 	Answers       []string           `bson:"answers,omitempty" json:"answers,omitempty"`
 	CorrectAnswer int                `bson:"correct,omitempty" json:"correct,omitempty"`
 }
@@ -18,8 +18,8 @@ type Question struct {
 type Textbook struct {
 	ID     primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	Title  string             `bson:"title,omitempty" json:"title,omitempty"`
-	Topic  primitive.ObjectID `bson:"topicID,omitempty" json:"topic,omitempty"`
-	Author primitive.ObjectID `bson:"userID,omitempty" json:"author,omitempty"`
+	Topic  primitive.ObjectID `bson:"topicID,omitempty" json:"topicID,omitempty"`
+	Author string             `bson:"userEmail,omitempty" json:"userEmail,omitempty"`
 	Body   string             `bson:"body,omitempty" json:"body,omitempty"`
 }
 

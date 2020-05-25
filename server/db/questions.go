@@ -9,13 +9,17 @@ import (
 )
 
 // Get all the topic's questions from Mongo and format them in json.
-func GetQuestions(topic string) ([]models.Question, error) {
+func GetQuestions(topicID string) ([]models.Question, error) {
 
 	collection := database.Collection("questions")
 
-	var questions []models.Question
+	docID, err := primitive.ObjectIDFromHex(topicID)
+	if err != nil {
+		return nil, err
+	}
 
-	cur, err := collection.Find(context.TODO(), bson.M{"topic": topic})
+	var questions []models.Question
+	cur, err := collection.Find(context.TODO(), bson.M{"topicID": docID})
 	if err != nil {
 		return nil, err
 	}

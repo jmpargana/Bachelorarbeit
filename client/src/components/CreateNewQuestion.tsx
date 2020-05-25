@@ -14,17 +14,41 @@ import Fab from "@material-ui/core/Fab";
 import Container from "@material-ui/core/Container";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import axios from 'axios';
+import axios from 'axios';
+import { useLocation } from "react-router-dom";
+import { useAuth0 } from '../helpers/react-auth0-spa';
+import { ObjectID } from "bson";
+import Question from "../models/Question";
+
+const questionAPI = "http://localhost:8080/api/question"
 
 export default function CreateNewQuestion() {
+  const location = useLocation();
+  const { user } = useAuth0();
+  const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
+  const userEmail = user.email;
+
   const [open, setOpen] = React.useState(false);
   const [question, setQuestion] = React.useState("");
   const [answers, setAnswers] = React.useState<Array<string>>([]);
-  const [correctAnswer, setCorrectAnswer] = React.useState(0);
+  const [correctAnswer, setCorrectAnswer] = React.useState("0");
   const [currentAnswer, setCurrentAnswer] = React.useState("");
 
-  const handleCloseAndCreateNewTopic = () => {
-    // TODO: Perform axios POST request to server to save new topic
+  const handleCloseAndCreateNewQuestion = () => {
+    if (!question || answers.length < 2 || parseInt(correctAnswer) < 0 || parseInt(correctAnswer) > answers.length - 1) return
+
+    const newQuestion: Question = { _id: new ObjectID(), question, answers, correct: parseInt(correctAnswer), userEmail, topicID}
+    const data = JSON.stringify(newQuestion)
+
+    console.log({newQuestion, data})
+
+    const uploadQuestion = async () => {
+      const result = await axios.post(questionAPI, data)
+      console.log({result})
+
+      // if successfull append to context
+    }
+    uploadQuestion();
     setOpen(false);
   };
 
@@ -84,7 +108,7 @@ export default function CreateNewQuestion() {
                 <FormControl component="fieldset" name="Answers">
                   <RadioGroup value={correctAnswer} onChange={(e: any) => setCorrectAnswer(e.target.value)} >
                     {answers.map((answer, index) => (
-                      <FormControlLabel key={`answer-${index}`} value={index} label={answer} control={<Radio />} />
+                      <FormControlLabel key={`answer-${index}`} value={`${index}`} label={answer} control={<Radio />} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -103,7 +127,7 @@ export default function CreateNewQuestion() {
                       Cancel
                     </Button>
                     <Button
-                      onClick={handleCloseAndCreateNewTopic}
+                      onClick={handleCloseAndCreateNewQuestion}
                       color="primary"
                       variant="contained"
                     >
