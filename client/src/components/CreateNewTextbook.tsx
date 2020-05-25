@@ -56,6 +56,7 @@ export default function CreateNewTextbook() {
       // if successfull append to context
     };
     uploadTextbook();
+    window.location.reload(false)
     setOpen(false);
   };
 

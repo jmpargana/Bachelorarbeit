@@ -49,6 +49,7 @@ export default function CreateNewQuestion() {
       // if successfull append to context
     }
     uploadQuestion();
+    window.location.reload(false)
     setOpen(false);
   };
 

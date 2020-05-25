@@ -20,11 +20,12 @@ export default function TextBooksExtension(props: {
   };
 
   return (
-    <Grid item>
+    <Grid item xs={12} sm={6}>
       <Box m={2}></Box>
       <Typography variant="h3">Textbooks</Typography>
       <Box m={2}></Box>
       <CreateNewTextbook />
+      <Box m={2}></Box>
       {props.textbooks ? props.textbooks.map((text, index) => (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}

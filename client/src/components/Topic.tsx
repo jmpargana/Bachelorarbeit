@@ -32,7 +32,7 @@ export default function Topic() {
   }, [topicID]);
 
   return (
-    <Grid container direction="column" justify="flex-start" alignItems="center">
+    <Grid container direction="column" justify="center" alignItems="center">
       <Box m={3}></Box>
       <Grid item>
         <Typography variant="h2">Topic</Typography>

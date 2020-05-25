@@ -25,11 +25,12 @@ export default function QuestionExtension(props: {
   };
 
   return (
-    <Grid item>
+    <Grid item xs={12} sm={4}>
       <Box m={2}></Box>
       <Typography variant="h3">Questions</Typography>
       <Box m={2}></Box>
       <CreateNewQuestion />
+      <Box m={2}></Box>
       {props.questions ? props.questions.map((question, index) => (
         <ExpansionPanel
           expanded={expanded === `panelQuestion${index}`}
