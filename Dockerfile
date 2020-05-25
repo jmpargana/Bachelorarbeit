@@ -29,4 +29,4 @@ EXPOSE 8080
 # WORKDIR /app
 
 # Start web server
-CMD ["server"]
+CMD ["server", "-m", "mongodb+srv://icmjmp:XyrFJ0sbYuDqmScg@cluster0-zqgvn.mongodb.net/test"]
