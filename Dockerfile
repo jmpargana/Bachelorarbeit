@@ -1,10 +1,9 @@
 # Specify the image
 FROM golang:latest
-FROM node:latest
 
 # Update debian and install dependencies
-RUN apt-get update && apt-get install -y poppler-utils wv unrtf tidy
-# RUN npm i npm@latest -g
+RUN apt-get update && apt-get install -y poppler-utils wv unrtf tidy npm
+RUN npm i npm@latest -g
 
 # Create folder within image to hold source files
 RUN mkdir /app
