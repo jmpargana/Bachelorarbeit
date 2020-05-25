@@ -1,9 +1,9 @@
-version '3'
+version: '3'
 
 services:
   db:
     image: mongo:latest
-    # container_name: app
+    container_name: app
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
@@ -15,7 +15,11 @@ services:
 
   app:
     image: bachelorarbeit
-    # container_name: bachelorarbeit
+    container_name: bachelorarbeit_app
+    ports:
+      - 8080:8080
+      - 8000:8000
+      - 3000:3000
     build:
       context: .
       dockerfile: Dockerfile

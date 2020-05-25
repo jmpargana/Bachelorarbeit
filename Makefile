@@ -1,30 +1,12 @@
-build:
-	docker build -t bachelor-arbeit-server .
-
-run:
-	docker run \
-		-p 8080:8080 \	# where all will run
-		-p 8888:8888 \	# docd runs to convert .pdf files to text
-		-d bachelor-arbeit-server
-
-exec:
-	docker run \
-		--rm \
-		-it \
-		-p 8080:8080 \
-		-p 8888:8888 \
-		bachelor-arbeit-server \
-		/bin/bash
-
-
-// This section is not ready
-db:
-	docker-compose build
-
-
-db_run:
-	docker-compose up -d
-
 
 help:
 	cat Makefile
+
+build:
+	docker-compose build
+
+run:
+	docker-compose up -d
+
+clean:
+	sudo rm -R data/

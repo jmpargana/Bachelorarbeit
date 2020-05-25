@@ -13,7 +13,7 @@ import (
 
 var (
 	port  = flag.Int("p", 8080, "Chosen Port to run App")
-	mongo = flag.String("mongo", "mongodb://localhost:27017", "Your MongoDB URI")
+	mongo = flag.String("mongo", "mongodb://app:27017", "Your MongoDB URI")
 )
 
 func main() {
