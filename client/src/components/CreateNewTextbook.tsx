@@ -16,10 +16,10 @@ import { ObjectID} from "bson";
 import  { useAuth0 } from '../helpers/react-auth0-spa';
 
 // api endpoint to post the textbook to db
-const textbookAPI = "http://localhost:8080/api/textbook";
+const textbookAPI = "https://alexastudyingassistant.herokuapp.com/api/textbook";
 
 // api endpoint to request a conversion to txt from pdf
-const pdfConverterAPI = "http://localhost:8080/api/converter";
+const pdfConverterAPI = "https://alexastudyingassistant.herokuapp.com/api/converter";
 
 export default function CreateNewTextbook() {
   // Variables needed to save in database entry

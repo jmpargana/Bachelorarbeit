@@ -11,7 +11,7 @@ import axios from "axios";
 import { ObjectID } from "mongodb";
 
 // URL with API endpoint to perform get requests
-const topicAPI = "http://localhost:8080/api/topics";
+const topicAPI = "https://alexastudyingassistant.herokuapp.com/api/topics";
 
 export default function TopicSelection() {
   const [topics, setTopics] = useState<Array<Topic>>();

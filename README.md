@@ -10,7 +10,7 @@ will allow the user to interact with this data via he's Alexa device.
 The server can be deployed in a docker container with the two commands.
 (it won't work without the API keys needed to set it up with Auth0)
 
-You can see a demo deployment in [heroku](https://smartspeakerstudying.herokuapp.com)
+You can see a demo deployment in [heroku](https://alexastudyingassistant.herokuapp.com)
 
 ```bash
 make build

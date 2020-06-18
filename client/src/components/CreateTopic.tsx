@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 import { ObjectID } from "bson";
 
-const topicAPI = "http://localhost:8080/api/topic"; 
+const topicAPI = "https://alexastudyingassistant.herokuapp.com/api/topic"; 
  
 // TODO: Dialog needs some styling
 const useStyles = makeStyles((theme) => ({

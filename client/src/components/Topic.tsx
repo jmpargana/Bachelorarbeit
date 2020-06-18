@@ -9,8 +9,8 @@ import Textbook from "../models/Textbook";
 import Question from "../models/Question";
 import axios from "axios";
 
-const questionAPI: string = "http://localhost:8080/api/questions/";
-const textbookAPI: string = "http://localhost:8080/api/textbooks/";
+const questionAPI: string = "https://alexastudyingassistant.herokuapp.com/api/questions/";
+const textbookAPI: string = "https://alexastudyingassistant.herokuapp.com/api/textbooks/";
 
 export default function Topic() {
   const location = useLocation();

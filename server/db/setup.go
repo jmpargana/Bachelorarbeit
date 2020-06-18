@@ -2,10 +2,11 @@ package db
 
 import (
 	"context"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"time"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // collection is a GLOBAL variable in the DB package.
@@ -34,5 +35,5 @@ func ConnectToDB(mongoURI string) {
 
 	log.Printf("Connected to database in: %s", mongoURI)
 
-	database = client.Database("Bachelorarbeit")
+	database = client.Database("asa")
 }

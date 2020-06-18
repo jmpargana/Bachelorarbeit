@@ -20,7 +20,7 @@ import { useAuth0 } from '../helpers/react-auth0-spa';
 import { ObjectID } from "bson";
 import Question from "../models/Question";
 
-const questionAPI = "http://localhost:8080/api/question"
+const questionAPI = "https://alexastudyingassistant.herokuapp.com/api/question"
 
 export default function CreateNewQuestion() {
   const location = useLocation();

@@ -23,10 +23,11 @@ WORKDIR /app/server
 RUN go install
 
 EXPOSE 8080
-# EXPOSE 8000
+EXPOSE 27017
+# EXPOSE 14694
 # EXPOSE 3000
 
 # WORKDIR /app
 
 # Start web server
-CMD ["server", "-m", "mongodb+srv://icmjmp:XyrFJ0sbYuDqmScg@cluster0-zqgvn.mongodb.net/test"]
+CMD ["server"]
