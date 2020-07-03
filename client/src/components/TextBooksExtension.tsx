@@ -15,6 +15,8 @@ export default function TextBooksExtension(props: {
 }) {
   const [expanded, setExpanded] = React.useState("");
 
+  console.log(props.textbooks)
+
   const handleChange = (panel: string) => (event: any, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : "");
   };
@@ -33,11 +35,11 @@ export default function TextBooksExtension(props: {
           onChange={handleChange(`panel${index}`)}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="h5">{text.title}</Typography>
+            <Typography variant="h5" display="block">{text.title}</Typography>
           </ExpansionPanelSummary>
           <Divider />
           <ExpansionPanelDetails>
-            <Typography>{text.body}</Typography>
+            <Typography variant='body1' style={{whiteSpace: "pre-line"}}>{text.body}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       )) : null}

@@ -1,0 +1,95 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "studying assistant",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "how can I study",
+            "how can I use studying assistant",
+            "help me with studying assistant"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetAvailableTopics",
+          "slots": [],
+          "samples": [
+            "how many topics are available",
+            "help me with the topics",
+            "help me chose a topic",
+            "what can you help me study with",
+            "what can you ask me about",
+            "what can I study",
+            "what topics are available",
+            "What are the topics available"
+          ]
+        },
+        {
+          "name": "StartTopic",
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.Book"
+            }
+          ],
+          "samples": [
+            "fetch me one specific topic {topic}",
+            "I want to start with the topic {topic}",
+            "launch topic {topic}",
+            "ask me about {topic}",
+            "I\u0027d like to study {topic}",
+            "I\u0027d like to practice {topic}",
+            "I want to practice {topic}",
+            "I want to study {topic}",
+            "help me study {topic}",
+            "help me practice with {topic}",
+            "help me with {topic}",
+            "let\u0027s practice {topic}",
+            "start with {topic}",
+            "let\u0027s start with {topic}",
+            "ask me questions about {topic}"
+          ]
+        },
+        {
+          "name": "AnswerQuestion",
+          "slots": [
+            {
+              "name": "answer",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "my guess is {answer}",
+            "I don\u0027t know",
+            "i think its {answer}",
+            "{answer}",
+            "my answer is {answer}"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "11"
+}

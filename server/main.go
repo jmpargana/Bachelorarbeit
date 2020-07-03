@@ -24,7 +24,8 @@ func main() {
 
 	r := router.Router() // Load all Routes
 
-	db.ConnectToDB(mongo) // Initiate connection to mongodb
+	cleanDB := db.ConnectToDB(mongo) // Initiate connection to mongodb
+	defer cleanDB()
 
 	log.Printf("Starting server in port: %s\n", port)
 

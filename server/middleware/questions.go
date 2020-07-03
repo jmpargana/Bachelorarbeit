@@ -31,10 +31,12 @@ func PostQuestion(w http.ResponseWriter, r *http.Request) {
 
 	var question models.Question
 
-	_ = json.NewDecoder(r.Body).Decode(&question)
+	if err := json.NewDecoder(r.Body).Decode(&question); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("500 - Something bad happened!"))
+	}
 
 	if err := db.PostQuestion(question); err != nil {
-
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("500 - Something bad happened!"))
 	}

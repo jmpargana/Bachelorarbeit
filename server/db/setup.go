@@ -16,7 +16,7 @@ var database *mongo.Database
 
 // ConnectToDB will be called to main to create a global variable, which
 // is a pointer to the MongoDB collection
-func ConnectToDB(mongoURI string) {
+func ConnectToDB(mongoURI string) func() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -36,4 +36,10 @@ func ConnectToDB(mongoURI string) {
 	log.Printf("Connected to database in: %s", mongoURI)
 
 	database = client.Database("asa")
+
+	return func() {
+		if err = client.Disconnect(ctx); err != nil {
+			panic(err)
+		}
+	}
 }

@@ -32,6 +32,8 @@ func PostTextbook(w http.ResponseWriter, r *http.Request) {
 
 	_ = json.NewDecoder(r.Body).Decode(&textbook)
 
+	log.Println(textbook.Body)
+
 	if err := db.PostTextbook(textbook); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("500 - Something bad happened!"))

@@ -23,24 +23,19 @@ func GetQuestions(topicID string) ([]models.Question, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	defer cur.Close(context.TODO())
 
 	for cur.Next(context.TODO()) {
-
 		var question models.Question
-
 		if err := cur.Decode(&question); err != nil {
 			log.Fatal(err)
 		}
-
 		questions = append(questions, question)
 	}
 
 	if err := cur.Err(); err != nil {
 		log.Fatal(err)
 	}
-
 	return questions, nil
 }
 

@@ -11,22 +11,21 @@ import Box from "@material-ui/core/Box";
 const steps: Array<string> = [
   "Create or join a topic",
   "Upload your multiple choice questions",
-  "Import the AWS functions",
-  "Interact with your smart speaker"
+  "Install the alexa skill",
 ];
 
 export default function WelcomeScreen() {
   return (
-    <Grid container direction="column" justify="space-between" alignItems="center">
+    <Grid item>
       <Grid item>
-        <Typography variant="h4">Use your Smart Speaker to assist you studying!</Typography>
-        <Box m={5}></Box>
+        <Typography variant="h5">Get up and running with 3 easy steps!</Typography>
+        <Box m={2}></Box>
       </Grid>
       <Grid item>
         <List>
           {steps.map((step, index) => (
             <ListItem key={`step-${index}`}>
-              <Typography variant="h5">{`${index + 1}. ${step}`}</Typography>
+              <Typography variant="h6">{`${index + 1}. ${step}`}</Typography>
             </ListItem>
           ))}
         </List>

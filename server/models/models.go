@@ -10,7 +10,7 @@ type Question struct {
 	Topic         primitive.ObjectID `bson:"topicID,omitempty" json:"topicID,omitempty"`
 	Author        string             `bson:"userEmail,omitempty" json:"userEmail,omitempty"`
 	Answers       []string           `bson:"answers,omitempty" json:"answers,omitempty"`
-	CorrectAnswer int                `bson:"correct,omitempty" json:"correct,omitempty"`
+	CorrectAnswer int                `bson:"correct" json:"correct"`
 }
 
 // Textbook is the JSON struct to be transported in any request
@@ -20,7 +20,7 @@ type Textbook struct {
 	Title  string             `bson:"title,omitempty" json:"title,omitempty"`
 	Topic  primitive.ObjectID `bson:"topicID,omitempty" json:"topicID,omitempty"`
 	Author string             `bson:"userEmail,omitempty" json:"userEmail,omitempty"`
-	Body   string             `bson:"body,omitempty" json:"body,omitempty"`
+	Body   string             `bson:"body" json:"body"`
 }
 
 // Topic is the JSON struct to be transported in any request

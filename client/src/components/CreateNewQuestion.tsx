@@ -40,7 +40,7 @@ export default function CreateNewQuestion() {
     const newQuestion: Question = { _id: new ObjectID(), question, answers, correct: parseInt(correctAnswer), userEmail, topicID}
     const data = JSON.stringify(newQuestion)
 
-    console.log({newQuestion, data})
+    // console.log({newQuestion, data})
 
     const uploadQuestion = async () => {
       const result = await axios.post(questionAPI, data)

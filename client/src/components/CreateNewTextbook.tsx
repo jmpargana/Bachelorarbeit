@@ -47,11 +47,8 @@ export default function CreateNewTextbook() {
     const textbook: Textbook = { _id: new ObjectID(), title, body, topicID, userEmail};
     const data = JSON.stringify(textbook)
 
-    console.log({textbook, data})
-
     const uploadTextbook = async () => {
       const result = await axios.post(textbookAPI, data);
-      console.log({result})
 
       // if successfull append to context
     };
