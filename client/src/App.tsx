@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar";
 import TopicSelection from "./components/TopicSelection";
 import Spinner from './components/Spinner';
 import PrivateRoute from './components/PrivateRoute';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './styles';
 
 export default function App() {
   const { loading } = useAuth0();
@@ -17,7 +19,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Router history={history}>
         <header>
           <Navbar />
@@ -28,6 +30,6 @@ export default function App() {
           <PrivateRoute path="/topic/:topicId" component={Topic} />
         </Switch>
       </Router>
-    </div>
+    </ThemeProvider>
   );
 }

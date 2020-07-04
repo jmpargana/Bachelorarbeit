@@ -24,7 +24,7 @@ export default function Navbar() {
   const classes = useStyles();
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Toolbar className={classes.appbar}>
         {!isAuthenticated ? (
           <Button color="inherit" onClick={() => loginWithRedirect({})}>

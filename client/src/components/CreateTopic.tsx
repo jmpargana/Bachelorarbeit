@@ -43,7 +43,7 @@ export default function CreateTopic() {
     <>
       <Button
         variant="contained"
-        color="primary"
+        color="secondary"
         size="large"
         onClick={() => setOpen(true)}
       >

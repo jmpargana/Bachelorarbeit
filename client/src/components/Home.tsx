@@ -10,7 +10,7 @@ export default function Home() {
       container 
       direction="column" 
       alignItems="center"
-      justify="center"
+      justify="space-evenly"
       style={{ minHeight: "80vh" }}
     >
       <Grid item>

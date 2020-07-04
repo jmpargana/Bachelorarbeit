@@ -1,8 +1,14 @@
 import React from 'react';
-import catAlexa from '../assets/img/alexa_cat.png';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 export default function GetStarted() {
   return (
-    <img src={catAlexa} alt="cat alexa" style={{width: '20%', height: 'auto'}}></img>
+      <Grid item>
+        <Button size="large" variant="contained" color="secondary" to="/topics" component={Link}>
+          Get Started
+        </Button>
+      </Grid>
   );
 }
