@@ -10,21 +10,14 @@ export default function Home() {
       container 
       direction="column" 
       alignItems="center"
-      justify="space-evenly"
+      justify="space-around"
       style={{ minHeight: "80vh" }}
     >
       <Grid item>
         <img src={Title} alt="Title" style={{ width: '100%', height: 'auto'}} />
       </Grid>
-      <Grid
-        container
-        direction="row"
-        alignItems="center"
-        justify="space-evenly"
-      >
         <WelcomeScreen />
         <GetStarted />
-      </Grid>
     </Grid>
   );
 }

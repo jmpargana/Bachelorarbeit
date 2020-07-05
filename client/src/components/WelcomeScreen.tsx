@@ -1,34 +1,23 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import WelcomeScreenTile from './WelcomeScreenTile';
 
 // TODO: create json file in assets
-const steps: Array<string> = [
-  "Create or join a topic",
-  "Upload your multiple choice questions",
-  "Install the alexa skill",
+const steps: [string, string][] = [
+  ["Open topic", "#ffb400"],
+  ["Upload questions", "#3e92a3"],
+  ["Install the alexa skill", "#ea5455"]
 ];
 
 export default function WelcomeScreen() {
   return (
-    <Grid item>
-      <Grid item>
-        <Typography variant="h5">Get up and running with 3 easy steps!</Typography>
-        <Box m={2}></Box>
-      </Grid>
-      <Grid item>
-        <List>
-          {steps.map((step, index) => (
-            <ListItem key={`step-${index}`}>
-              <Typography variant="h6">{`${index + 1}. ${step}`}</Typography>
-            </ListItem>
-          ))}
-        </List>
-      </Grid>
-      <Box m={3}></Box>
+    <Grid 
+      container
+      direction="row"
+      justify="space-evenly"
+      alignItems="center"
+    >
+      {steps.map(step => <WelcomeScreenTile message={step[0]} color={step[1]} />)}
     </Grid>
   );
 }
