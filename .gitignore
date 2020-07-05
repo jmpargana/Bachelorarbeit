@@ -2,3 +2,4 @@ go.sum
 data/
 server/server
 server/.env
+**/tags
