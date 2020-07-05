@@ -22,14 +22,5 @@ WORKDIR /app/server
 # Compile the binary
 RUN go install
 
-EXPOSE 8080
-EXPOSE 27017
-EXPOSE 33831
-EXPOSE 15219
-# EXPOSE 14694
-# EXPOSE 3000
-
-# WORKDIR /app
-
 # Start web server
 CMD ["server"]
