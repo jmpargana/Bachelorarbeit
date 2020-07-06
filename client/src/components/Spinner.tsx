@@ -11,7 +11,7 @@ export default function Spinner() {
       justify="center"
       style={{ minHeight: "100vh" }}
     >
-      <CircularProgress />
+      <CircularProgress color="secondary" />
     </Grid>
   );
 }
