@@ -1,23 +1,17 @@
-import React, { createContext, useReducer } from 'react';
-import Topic from '../models/Topic';
-import Question from '../models/Question';
-import Textbook from '../models/Textbook';
-/* import topicReducer from './reducer'; */
+import React, { createContext, useReducer } from "react";
+import TopicReducer from './reducer';
 
-type TopicContextType = {
-  [topicId: string]: {
-    topic: Topic,
-    questions: Question[],
-    textbooks: Textbook[],
-  };
+const TopicContext = createContext({});
+
+function TopicProvider(props) {
+  const [state, dispatch] = useReducer(TopicReducer, {})
+  return (
+    <TopicContext.Provider 
+      value={{ state, dispatch }}
+    >
+      {props.children}
+    </TopicContext.Provider>
+  );
 }
 
-const AppContext = createContext<{
-  state: TopicContextType;
-  dispatch: React.Dispatch<any>;
-}>({
-  state: {},
-  dispatch: () => null
-});
-
-export { AppContext };
+export { TopicProvider, TopicContext };
