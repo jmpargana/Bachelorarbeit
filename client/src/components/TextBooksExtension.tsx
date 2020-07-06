@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -9,13 +9,16 @@ import Box from "@material-ui/core/Box";
 import Textbook from "../models/Textbook";
 import Divider from '@material-ui/core/Divider';
 import CreateNewTextbook from './CreateNewTextbook';
+import {TopicContext} from "../context/context";
+import {useLocation} from "react-router-dom";
 
 export default function TextBooksExtension(props: {
   textbooks: Array<Textbook>;
 }) {
   const [expanded, setExpanded] = React.useState("");
-
-  console.log(props.textbooks)
+  const { state } = useContext(TopicContext);
+  const location = useLocation();
+  const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
 
   const handleChange = (panel: string) => (event: any, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : "");
@@ -28,7 +31,7 @@ export default function TextBooksExtension(props: {
       <Box m={2}></Box>
       <CreateNewTextbook />
       <Box m={2}></Box>
-      {props.textbooks ? props.textbooks.map((text, index) => (
+      {state[topicID] ? state[topicID].textbooks.map((text, index) => (
         <ExpansionPanel
           expanded={expanded === `panel${index}`}
           key={`panel${index}`}

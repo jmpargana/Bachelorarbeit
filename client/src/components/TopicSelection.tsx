@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
@@ -9,19 +9,27 @@ import CreateTopic from "./CreateTopic";
 import Topic from '../models/Topic';
 import axios from "axios";
 import { ObjectID } from "mongodb";
+import {TopicContext} from "../context/context";
+/* import {useGlobalState, useDispatch} from "../context/context"; */
 
 // URL with API endpoint to perform get requests
 const topicAPI = "https://alexastudyingassistant.herokuapp.com/api/topics";
 
 export default function TopicSelection() {
-  const [topics, setTopics] = useState<Array<Topic>>();
+  /* const [topics, setTopics] = useState<Array<Topic>>(); */
   const history = useHistory();
   const value = "";
+
+  const { state, dispatch } = useContext(TopicContext);
+  const topics = Object.keys(state).map(key => state[key].topic)
 
   useEffect(() => {
     const fetchTopics = async () => {
       const result = await axios(topicAPI);
-      setTopics(result.data)
+      /* setTopics(result.data) */
+      result.data.map((topic: Topic) => {
+        dispatch({ type: 'UPLOAD_TOPIC', topic: topic})
+      })
     };
     fetchTopics();
   }, []);

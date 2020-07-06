@@ -1,10 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-// import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -19,10 +18,12 @@ import { useLocation } from "react-router-dom";
 import { useAuth0 } from '../helpers/react-auth0-spa';
 import { ObjectID } from "bson";
 import Question from "../models/Question";
+import {TopicContext} from "../context/context";
 
 const questionAPI = "https://alexastudyingassistant.herokuapp.com/api/question"
 
 export default function CreateNewQuestion() {
+  const { state, dispatch } = useContext(TopicContext);
   const location = useLocation();
   const { user } = useAuth0();
   const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
@@ -39,17 +40,13 @@ export default function CreateNewQuestion() {
 
     const newQuestion: Question = { _id: new ObjectID(), question, answers, correct: parseInt(correctAnswer), userEmail, topicID}
     const data = JSON.stringify(newQuestion)
-
-    // console.log({newQuestion, data})
-
     const uploadQuestion = async () => {
-      const result = await axios.post(questionAPI, data)
-      console.log({result})
-
-      // if successfull append to context
+      await axios.post(questionAPI, data)
+      if (Object.keys(state).length !== 0) 
+        dispatch({type: 'UPLOAD_QUESTION', topicId: topicID.toString(), question: newQuestion})
     }
     uploadQuestion();
-    window.location.reload(false)
+    /* window.location.reload(false) */
     setOpen(false);
   };
 

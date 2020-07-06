@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useContext} from "react";
 import { useLocation } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -14,6 +14,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { ObjectID} from "bson";
 import  { useAuth0 } from '../helpers/react-auth0-spa';
+import {TopicContext} from "../context/context";
 
 // api endpoint to post the textbook to db
 const textbookAPI = "https://alexastudyingassistant.herokuapp.com/api/textbook";
@@ -25,6 +26,7 @@ export default function CreateNewTextbook() {
   // Variables needed to save in database entry
   const location = useLocation();
   const { user } = useAuth0();
+  const { state, dispatch } = useContext(TopicContext);
 
   const topicID = new ObjectID(location.pathname.substring(location.pathname.lastIndexOf("/") + 1));
   const userEmail = user.email;
@@ -48,12 +50,12 @@ export default function CreateNewTextbook() {
     const data = JSON.stringify(textbook)
 
     const uploadTextbook = async () => {
-      const result = await axios.post(textbookAPI, data);
-
-      // if successfull append to context
+      await axios.post(textbookAPI, data);
+      if (Object.keys(state).length !== 0)
+        dispatch({type: 'UPLOAD_TEXTBOOK', topicId: topicID.toString(), textbook})
     };
     uploadTextbook();
-    window.location.reload(false)
+    /* window.location.reload(false) */
     setOpen(false);
   };
 

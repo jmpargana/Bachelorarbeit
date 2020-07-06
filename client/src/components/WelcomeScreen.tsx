@@ -11,13 +11,14 @@ const steps: [string, string][] = [
 
 export default function WelcomeScreen() {
   return (
-    <Grid 
-      container
-      direction="row"
-      justify="space-evenly"
-      alignItems="center"
-    >
-      {steps.map(step => <WelcomeScreenTile message={step[0]} color={step[1]} />)}
+    <Grid container direction="row" justify="space-evenly" alignItems="center">
+      {steps.map((step, i) => (
+        <WelcomeScreenTile
+          key={`paper-step-${i}`}
+          message={step[0]}
+          color={step[1]}
+        />
+      ))}
     </Grid>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -8,11 +8,13 @@ import QuestionExtension from "./QuestionExtension";
 import Textbook from "../models/Textbook";
 import Question from "../models/Question";
 import axios from "axios";
+import {TopicContext} from "../context/context";
 
 const questionAPI: string = "https://alexastudyingassistant.herokuapp.com/api/questions/";
 const textbookAPI: string = "https://alexastudyingassistant.herokuapp.com/api/textbooks/";
 
 export default function Topic() {
+  const { state, dispatch } = useContext(TopicContext);
   const location = useLocation();
   const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
   const [questions, setQuestions] = useState<Array<Question>>(new Array<Question>());
@@ -22,10 +24,18 @@ export default function Topic() {
     const fetchQuestions = async () => {
       const result = await axios(questionAPI + topicID);
       setQuestions(result.data);
+      if (Object.keys(state).length !== 0 && result.data)
+        result.data.map((question: Question) => 
+          dispatch({type: 'UPLOAD_QUESTION', topicId: topicID, question})
+        );
     };
     const fetchTextbooks = async () => {
       const result = await axios(textbookAPI + topicID);
       setTextbooks(result.data);
+      if (Object.keys(state).length !== 0 && result.data)
+        result.data.map((textbook: Textbook) => 
+          dispatch({type: 'UPLOAD_TEXTBOOK', topicId: topicID, textbook})
+        );
     };
     fetchQuestions();
     fetchTextbooks();
@@ -35,7 +45,7 @@ export default function Topic() {
     <Grid container direction="column" justify="center" alignItems="center">
       <Box m={3}></Box>
       <Grid item>
-        <Typography variant="h2">Topic</Typography>
+        <Typography variant="h2">{state[topicID] ? state[topicID].topic.name : "Topic"}</Typography>
       </Grid>
       <Box m={1}></Box>
       <Grid

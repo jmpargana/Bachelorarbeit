@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useHistory } from 'react-router-dom';
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 import { ObjectID } from "bson";
+import {TopicContext} from "../context/context";
 
 const topicAPI = "https://alexastudyingassistant.herokuapp.com/api/topic"; 
  
@@ -21,15 +22,17 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateTopic() {
   const [open, setOpen] = React.useState(false);
   const [newTopic, setNewTopic] = React.useState("");
+  const { dispatch } = useContext(TopicContext);
   const history = useHistory();
   const classes = useStyles();
 
   const handleCloseAndCreateNewTopic = () => {
     const newTopicID = new ObjectID();
     const uploadTopic = async () => {
-      const data = JSON.stringify({ '_id': newTopicID, 'name': newTopic })
-      const result = await axios.post(topicAPI, data)
-      console.log({result, newTopic})
+      const topic = { '_id': newTopicID, 'name': newTopic }
+      const data = JSON.stringify(topic)
+      await axios.post(topicAPI, data)
+      dispatch({ type: 'UPLOAD_TOPIC', topic })
     }
     uploadTopic();
     history.push(`/topic/${newTopicID.toString()}`)

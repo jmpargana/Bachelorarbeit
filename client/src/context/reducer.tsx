@@ -2,23 +2,23 @@ import Topic from "../models/Topic";
 import Textbook from "../models/Textbook";
 import Question from "../models/Question";
 
-interface FullTopic {
+export interface FullTopic {
   topic: Topic;
   questions: Question[];
   textbooks: Textbook[];
 }
 
-type State = {
+export type State = {
   [key: string]: FullTopic;
 };
 
-type Action = 
+export type Action = 
   | { type: "UPLOAD_TOPIC"; topic: Topic }
   | { type: "UPLOAD_QUESTION"; topicId: string; question: Question }
   | { type: "UPLOAD_TEXTBOOK"; topicId: string; textbook: Textbook };
 
 
-export default function TopicReducer(state: State, action: Action): State {
+export function TopicReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'UPLOAD_TOPIC': {
       return {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext} from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -14,11 +14,18 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckIcon from '@material-ui/icons/Check';
 import CreateNewQuestion from "./CreateNewQuestion";
+import {TopicContext} from "../context/context";
+import {useLocation} from "react-router-dom";
 
 export default function QuestionExtension(props: {
   questions: Array<Question>;
 }) {
   const [expanded, setExpanded] = React.useState("");
+  const { state } = useContext(TopicContext);
+  const location = useLocation();
+  const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+
+  /* console.log({state, topicID}) */
 
   const handleChange = (panel: string) => (event: any, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : "");
@@ -31,7 +38,7 @@ export default function QuestionExtension(props: {
       <Box m={2}></Box>
       <CreateNewQuestion />
       <Box m={2}></Box>
-      {props.questions ? props.questions.map((question, index) => (
+      {state[topicID] ? state[topicID].questions.map((question, index) => (
         <ExpansionPanel
           expanded={expanded === `panelQuestion${index}`}
           key={`panelQuestion${index}`}

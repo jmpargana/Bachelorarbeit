@@ -1,16 +1,22 @@
 import React, { createContext, useReducer } from "react";
-import TopicReducer from './reducer';
+import {TopicReducer, Action, State } from './reducer';
 
-const TopicContext = createContext({});
+const initialState: State = {};
+const TopicContext = createContext<{
+  state: State;
+  dispatch: React.Dispatch<Action>;
+}>({
+  state: initialState,
+  dispatch: () => null
+});
 
-function TopicProvider(props) {
-  const [state, dispatch] = useReducer(TopicReducer, {})
+const TopicProvider: React.ComponentType = ({children}) => {
+  const [state, dispatch] = useReducer(TopicReducer, initialState)
+
   return (
-    <TopicContext.Provider 
-      value={{ state, dispatch }}
-    >
-      {props.children}
-    </TopicContext.Provider>
+      <TopicContext.Provider value={{state, dispatch}}>
+        {children}
+      </TopicContext.Provider>
   );
 }
 

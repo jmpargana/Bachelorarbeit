@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useReducer} from "react";
 import {Router, Route, Switch} from "react-router-dom";
 import history from './utils/history';
 import {useAuth0} from "./helpers/react-auth0-spa";
@@ -10,6 +10,7 @@ import Spinner from './components/Spinner';
 import PrivateRoute from './components/PrivateRoute';
 import {ThemeProvider} from '@material-ui/core/styles';
 import theme from './styles';
+import {TopicProvider} from "./context/context";
 
 export default function App() {
   const {loading} = useAuth0();
@@ -20,16 +21,18 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router history={history}>
-        <header>
-          <Navbar />
-        </header>
-        <Switch>
-          <Route path="/" exact component={Home}></Route>
-          <PrivateRoute path="/topics" component={TopicSelection} />
-          <PrivateRoute path="/topic/:topicId" component={Topic} />
-        </Switch>
-      </Router>
+      <TopicProvider>
+        <Router history={history}>
+          <header>
+            <Navbar />
+          </header>
+          <Switch>
+            <Route path="/" exact component={Home}></Route>
+            <PrivateRoute path="/topics" component={TopicSelection} />
+            <PrivateRoute path="/topic/:topicId" component={Topic} />
+          </Switch>
+        </Router>
+      </TopicProvider>
     </ThemeProvider>
   );
 }
