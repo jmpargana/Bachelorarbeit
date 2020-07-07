@@ -6,7 +6,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Box from "@material-ui/core/Box";
-import Question from "../models/Question";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -17,15 +16,11 @@ import CreateNewQuestion from "./CreateNewQuestion";
 import {TopicContext} from "../context/context";
 import {useLocation} from "react-router-dom";
 
-export default function QuestionExtension(props: {
-  questions: Array<Question>;
-}) {
+export default function QuestionExtension() {
   const [expanded, setExpanded] = React.useState("");
   const { state } = useContext(TopicContext);
   const location = useLocation();
   const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-
-  /* console.log({state, topicID}) */
 
   const handleChange = (panel: string) => (event: any, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : "");

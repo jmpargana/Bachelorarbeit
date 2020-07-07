@@ -6,15 +6,12 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Box from "@material-ui/core/Box";
-import Textbook from "../models/Textbook";
 import Divider from '@material-ui/core/Divider';
 import CreateNewTextbook from './CreateNewTextbook';
 import {TopicContext} from "../context/context";
 import {useLocation} from "react-router-dom";
 
-export default function TextBooksExtension(props: {
-  textbooks: Array<Textbook>;
-}) {
+export default function TextBooksExtension() {
   const [expanded, setExpanded] = React.useState("");
   const { state } = useContext(TopicContext);
   const location = useLocation();

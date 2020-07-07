@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useLocation } from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -17,26 +17,25 @@ export default function Topic() {
   const { state, dispatch } = useContext(TopicContext);
   const location = useLocation();
   const topicID = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-  const [questions, setQuestions] = useState<Array<Question>>(new Array<Question>());
-  const [textbooks, setTextbooks] = useState<Array<Textbook>>(new Array<Textbook>());
 
   useEffect(() => {
     const fetchQuestions = async () => {
       const result = await axios(questionAPI + topicID);
-      setQuestions(result.data);
-      if (Object.keys(state).length !== 0 && result.data)
+      if (Object.keys(state).length !== 0 && result.data) {
         result.data.map((question: Question) => 
           dispatch({type: 'UPLOAD_QUESTION', topicId: topicID, question})
         );
+      }
     };
     const fetchTextbooks = async () => {
       const result = await axios(textbookAPI + topicID);
-      setTextbooks(result.data);
-      if (Object.keys(state).length !== 0 && result.data)
+      if (Object.keys(state).length !== 0 && result.data){
         result.data.map((textbook: Textbook) => 
           dispatch({type: 'UPLOAD_TEXTBOOK', topicId: topicID, textbook})
         );
+      }
     };
+    dispatch({type: 'CLEAN', topicId: topicID})
     fetchQuestions();
     fetchTextbooks();
   }, [topicID]);
@@ -54,8 +53,8 @@ export default function Topic() {
         justify="space-evenly"
         alignItems="flex-start"
       >
-        <TextBooksExtension textbooks={textbooks} />
-        <QuestionExtension questions={questions} />
+        <TextBooksExtension />
+        <QuestionExtension />
       </Grid>
     </Grid>
   );

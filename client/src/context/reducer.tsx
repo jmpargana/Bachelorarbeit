@@ -15,7 +15,8 @@ export type State = {
 export type Action = 
   | { type: "UPLOAD_TOPIC"; topic: Topic }
   | { type: "UPLOAD_QUESTION"; topicId: string; question: Question }
-  | { type: "UPLOAD_TEXTBOOK"; topicId: string; textbook: Textbook };
+  | { type: "UPLOAD_TEXTBOOK"; topicId: string; textbook: Textbook }
+  | { type: "CLEAN"; topicId: string };
 
 
 export function TopicReducer(state: State, action: Action): State {
@@ -53,6 +54,17 @@ export function TopicReducer(state: State, action: Action): State {
           ]
         }
       };
+    }
+    case "CLEAN": {
+      localStorage.removeItem('topic')
+      return {
+        ...state,
+        [action.topicId]: {
+          topic: state[action.topicId].topic,
+          questions: [],
+          textbooks: [],
+        }
+      }
     }
     default:
       return state;
