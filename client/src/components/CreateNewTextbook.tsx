@@ -2,19 +2,16 @@ import React, {useRef, useContext} from "react";
 import { useLocation } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import Textbook from "../models/Textbook";
 import Grid from "@material-ui/core/Grid";
-import DialogContent from "@material-ui/core/DialogContent";
 import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { ObjectID} from "bson";
 import  { useAuth0 } from '../helpers/react-auth0-spa';
 import {TopicContext} from "../context/context";
+import Paper from "@material-ui/core/Paper";
 
 // api endpoint to post the textbook to db
 const textbookAPI = "https://alexastudyingassistant.herokuapp.com/api/textbook";
@@ -33,6 +30,8 @@ export default function CreateNewTextbook() {
 
   // Hooks to deal with inputs
   const fileInput = useRef<HTMLInputElement>(null);
+  const [titleError, setTitleError] = React.useState(false)
+  const [bodyError, setBodyError] = React.useState(false)
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [body, setBody] = React.useState('');
@@ -44,7 +43,14 @@ export default function CreateNewTextbook() {
    * parent component to rerender the textbook expandable list
    */
   const handleUploadNewTextbook = () => {
-    if (!body || !title) return;
+    if (!title){
+        setTitleError(true)
+        return
+    }
+    if (!body) {
+      setBodyError(true)
+      return
+    }
 
     const textbook: Textbook = { _id: new ObjectID(), title, body, topicID, userEmail};
     const data = JSON.stringify(textbook)
@@ -97,51 +103,99 @@ export default function CreateNewTextbook() {
       >
         Upload New Textbook
       </Button>
-      <Dialog open={open} fullScreen onClose={() => setOpen(false)}>
-        <Box m={6} />
-        <Grid container direction="row" justify="center" alignItems="center">
-          <DialogTitle>
-            <Typography variant="h5">Upload New Textbook from PDF File or Copy Contents</Typography>
-          </DialogTitle>
-        </Grid>
-        <Grid item>
-        <DialogContent>
-          <Grid container direction="row" justify="center" alignItems="center">
-            <TextField label="Title" value={title} onChange={(e: any) => setTitle(e.target.value)} />
-            <input id="pdf-upload" type="file" onChange={handleUploadPDF} ref={fileInput} />
-          </Grid>
-          <Box m={5} />
-          <Grid item>
-            <Container fixed>
-              <TextField
-                fullWidth
-                placeholder="Textbook's Content"
-                label="Content"
-                value={body}
-                multiline
-                rows={25}
-              />
-            </Container>
-          </Grid>
-        </DialogContent>
-        </Grid>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <DialogActions>
-            <Button
-              onClick={() => setOpen(false)}
-              color="primary"
-              variant="contained"
+      <Dialog fullScreen open={open} onClose={() => setOpen(false)}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Paper
+            elevation={3}
+            style={{
+              height: "800px",
+              width: "1000px",
+            }}
+          >
+            <Box m={5} />
+            <Typography align="center" variant="h4">Upload a textbook</Typography>
+            <Grid
+              container
+              direction="column"
+              justify="flex-start"
+              alignItems="stretch"
+              style={{ height: "100%", width: "100%", padding: "50px 100px" }}
             >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleUploadNewTextbook}
-              color="primary"
-              variant="contained"
-            >
-              Upload
-            </Button>
-          </DialogActions>
+              <form autoComplete="off">
+                <Grid container direction="column" spacing={3}>
+                  <Grid item>
+                    <TextField
+                      fullWidth
+                      label="Textbook title"
+                      error={titleError}
+                      value={title}
+                      onChange={(e: any) => {
+                        setTitle(e.target.value)
+                        setTitleError(false)
+                      }}
+                      placeholder="The exhilarant world travel of Mike Thomas"
+                    />
+                  </Grid>
+                  <Box m={1} />
+                  <Grid item>
+                    <input
+                      id="pdf-upload"
+                      type="file"
+                      style={{ width: "100%" }}
+                      onChange={handleUploadPDF}
+                      ref={fileInput}
+                    />
+                    <label htmlFor="pdf-upload">
+                      <Button component="span"></Button>
+                    </label>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      placeholder="All content comes here. You can load a pdf file a change it."
+                      label="Textbook's Content"
+                      multiline
+                      error={bodyError}
+                      fullWidth
+                      onChange={(e: any) => {
+                        setBodyError(false)
+                        setBody(e.target.value)
+                      }}
+                      variant="outlined"
+                      value={body}
+                      rows={18}
+                    />
+                  </Grid>
+                </Grid>
+              </form>
+              <Box m={2} />
+              <Grid spacing={3} container justify="flex-end">
+                <Grid item>
+                  <Button 
+                    variant="contained" 
+                    color="primary"
+                    onClick={() => setOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button 
+                    variant="contained" 
+                    color="primary"
+                    onClick={handleUploadNewTextbook}
+                  >
+                    Upload
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Paper>
         </Grid>
       </Dialog>
     </>
