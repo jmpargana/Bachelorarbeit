@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -19,6 +18,8 @@ import { useAuth0 } from '../helpers/react-auth0-spa';
 import { ObjectID } from "bson";
 import Question from "../models/Question";
 import {TopicContext} from "../context/context";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 
 const questionAPI = "https://alexastudyingassistant.herokuapp.com/api/question"
 
@@ -55,6 +56,14 @@ export default function CreateNewQuestion() {
     setCurrentAnswer("");
   };
 
+  const handleCancelAndReset = (e: any) => {
+    setCorrectAnswer("0");
+    setQuestion("")
+    setCurrentAnswer("");
+    setAnswers([]);
+    setOpen(false);
+  }
+
   return (
     <>
       <Button
@@ -71,38 +80,54 @@ export default function CreateNewQuestion() {
           justify="center"
           direction="column"
           alignItems="center"
-          style={{ minHeight: "90vh" }}
+          style={{ minHeight: "100vh" }}
         >
-          <Paper elevation={3}>
+          <Paper 
+            elevation={3}
+            style={{
+              height: "600px",
+              width: "800px",
+            }}
+          >
+            <Box m={5} />
+            <Typography align="center" variant="h4">Create a new multiple choice question</Typography>
             <Grid
               container
               direction="column"
-              alignItems="flex-start"
-              justify="space-between"
+              justify="flex-start"
+              alignItems="stretch"
+              style={{ height: "100%", width: "100%", padding: "20px 100px" }}
             >
               <Container>
-                <DialogTitle>Create a new multiple choice question</DialogTitle>
                 <TextField
                   margin="normal"
                   autoFocus
+                  fullWidth
                   type="text"
                   label="Question"
                   value={question}
                   onChange={(e: any) => setQuestion(e.target.value)}
                 />
-                <Grid container direction="row">
-                  <TextField
-                    margin="normal"
-                    autoFocus
-                    type="text"
-                    label="Create new Answer"
-                    value={currentAnswer}
-                    onChange={(e: any) => setCurrentAnswer(e.target.value)}
-                  />
-                  <Fab color="primary" aria-label="add">
-                    <Add onClick={handleSubmitAnswer} />
-                  </Fab>
+                <TextField
+                  margin="normal"
+                  autoFocus
+                  fullWidth
+                  type="text"
+                  label="Create new Answer"
+                  value={currentAnswer}
+                  onChange={(e: any) => setCurrentAnswer(e.target.value)}
+                />
+                <Grid container direction="row" justify="space-around" alignItems="center">
+                  <Grid item>
+                    <Typography align="center" variant="body1">Select the correct one:</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Fab color="primary" aria-label="add">
+                      <Add onClick={handleSubmitAnswer} />
+                    </Fab>
+                  </Grid>
                 </Grid>
+                <Container style={{ padding: "0px 80px", height: "200px", width: "auto" }}>
                 <FormControl component="fieldset" name="Answers">
                   <RadioGroup value={correctAnswer} onChange={(e: any) => setCorrectAnswer(e.target.value)} >
                     {answers.map((answer, index) => (
@@ -110,6 +135,8 @@ export default function CreateNewQuestion() {
                     ))}
                   </RadioGroup>
                 </FormControl>
+                </Container>
+                <Box m={3} />
                 <Grid
                   container
                   direction="row"
@@ -118,7 +145,7 @@ export default function CreateNewQuestion() {
                 >
                   <DialogActions>
                     <Button
-                      onClick={() => setOpen(false)}
+                      onClick={handleCancelAndReset}
                       color="primary"
                       variant="contained"
                     >

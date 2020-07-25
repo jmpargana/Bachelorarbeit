@@ -36,6 +36,12 @@ export default function CreateNewTextbook() {
   const [title, setTitle] = React.useState('');
   const [body, setBody] = React.useState('');
 
+  const handleCancelAndReset = (e: any) => {
+    setTitle("");
+    setBody("");
+    setOpen(false);
+  }
+
   /**
    * This method gets called with the submit button 
    * It should check if all fields are complete and perform axios post request
@@ -179,7 +185,7 @@ export default function CreateNewTextbook() {
                   <Button 
                     variant="contained" 
                     color="primary"
-                    onClick={() => setOpen(false)}
+                    onClick={handleCancelAndReset}
                   >
                     Cancel
                   </Button>
