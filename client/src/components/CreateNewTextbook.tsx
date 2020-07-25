@@ -67,6 +67,8 @@ export default function CreateNewTextbook() {
         dispatch({type: 'UPLOAD_TEXTBOOK', topicId: topicID.toString(), textbook})
     };
     uploadTextbook();
+    setTitle("");
+    setBody("");
     /* window.location.reload(false) */
     setOpen(false);
   };

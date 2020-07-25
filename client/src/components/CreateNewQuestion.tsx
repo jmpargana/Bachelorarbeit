@@ -47,6 +47,7 @@ export default function CreateNewQuestion() {
         dispatch({type: 'UPLOAD_QUESTION', topicId: topicID.toString(), question: newQuestion})
     }
     uploadQuestion();
+    resetQuestion();
     /* window.location.reload(false) */
     setOpen(false);
   };
@@ -56,11 +57,15 @@ export default function CreateNewQuestion() {
     setCurrentAnswer("");
   };
 
-  const handleCancelAndReset = (e: any) => {
+  const resetQuestion = () => {
     setCorrectAnswer("0");
     setQuestion("")
     setCurrentAnswer("");
     setAnswers([]);
+  }
+
+  const handleCancelAndReset = (e: any) => {
+    resetQuestion();
     setOpen(false);
   }
 
