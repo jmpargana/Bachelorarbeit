@@ -33,9 +33,9 @@ export default function CreateTopic() {
       const data = JSON.stringify(topic)
       await axios.post(topicAPI, data)
       dispatch({ type: 'UPLOAD_TOPIC', topic })
+      history.push(`/topic/${newTopicID.toString()}`)
     }
     uploadTopic();
-    history.push(`/topic/${newTopicID.toString()}`)
   };
 
   function handleNewTopicNameChange(e: React.ChangeEvent<HTMLInputElement>) {
