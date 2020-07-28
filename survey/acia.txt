@@ -1,0 +1,31 @@
+age: 25
+foo: musician/master
+habits with tech: use phone everyday for last 8 years
+usage purpose: extensive use of phone to help with daily tasks and entertainment (cat videos)
+
+
+what studying: driver's license
+what purpose: get a driver's license certification
+how many hours a week do you study: 0
+what tech do you use to study: ipad or phone
+have used quiz to practice: 
+    yes, but don't like it, because you just memorize someones answer but you don't learn
+
+opinion on tech for daily tasks: seemingly helpful
+"" for learning tasks: 
+    of course its very reachable and practical, but you end up being overwhelmed
+    with the options and don't where to start. if you have a working model it would be efficient
+    but you're worried that the more different methods exists the harder it is
+    to stick with something and the learning becomes even more difficult.
+    You end up loosing the interest you had to practice in the first place.
+    But you are opened to change your opinion.
+opnion changed before: 
+    you used to think it was amazing but changed your mind.
+    the more you use it, the slower your brain becomes, because you rely 
+    too much on the practicality of technology and loose the ability to memorize.
+    Example, you have a dictionary and its easier to just check everytime for 
+    and answer than actually learning it.
+    The thought process became slower.
+
+
+

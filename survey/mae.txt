@@ -1,0 +1,52 @@
+age: 63
+foo: coordinator for national library ...
+habits with tech: 
+	extensive use of technology for professional purposes. 
+	(basic editing word and excel) -> computers, phone, ipad
+	also for entertainment purposes (reading newspapers)
+habits for learning: 
+	usage of technology to research and browse information
+
+currently studying:
+	libraries and literature
+purpose: have a deeper knowledge of the professional field and develop an
+	innovative and strategic view of the field
+how many hours:
+	3h a week
+what tech: google, mail, social networks
+quizzing experience: never
+is it efficient: 
+	its probably a narrow approach, but for kids and different fields 
+	might be very stimulating, something like gamification
+
+opinion on tech for daily tasks:
+	its completely indespensable. there is no way to avoid it. it 
+	csimplifies the communication, the access, the sharing, the writing.
+	the interaction, the production, etc.
+	for books, and for extensible works, the user prevers the analogic 
+	version, since the screen doesnt provide the same levels of 
+	concentrations and the deeper thoughs about.
+	but for anything else the navigation using html gives allows users
+	to even discover completely new things they wouldnt in different 
+	more traditional methods.
+opnion on tech for learning tasks:
+	it provides autonomia and independence and cross and enrich
+	any analysis and research.
+opnion changed before:
+	it changed, now the user accepts that the use of technology is
+	imprescindivel, since the web and modern operating systems more 
+	(user friendly), it became much more accessible and completely
+	essential for daily tasks (bank transfers, etc)
+
+
+
+
+
+
+
+analysis on user:
+	the creation of questions and answers was a very effective challenge
+	that helped the user studying, maybe even more than the reviewing 
+	section.
+
+

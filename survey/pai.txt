@@ -1,0 +1,52 @@
+age: 72
+foo: retired
+habits with tech: 
+	use everyday for daily tasks, to search information for topics 
+	that is currently practicing and studying. music, music theory
+	and history, as well as chinese.
+habits for learning: 
+	mainly for researching purposes, to listen to recordings, to search
+	for scores and to get informaion on the works
+
+currently studying:
+	mandarin language
+purposes:
+	to enhance culture level (hobby)
+how many hours:
+	3h a day
+what tech: 
+	placo (translating platform), google translate, (because one can
+	also listen to the language and not only read) plac is in phone.
+quizzing experience: for university because exams used to have the same format.
+is it efficient: 
+	yes, since one can have extremely similar answers, with an
+	astonishing small level of nuances, and to be able to find the 
+	correct one, the user needs to be extremely concentrated and aware
+	of all differences.
+
+opinion on tech for daily tasks:
+	completely imprescindivel. without the help of technology, the user
+	wouldnt have a fast and effective way to solve questions is
+	has and is able to answer almost instantaneously.
+opnion on tech for learning tasks:
+	almost the same, with the exception that:
+	there arent many apps that fulfill completely every criteria
+	needed to study. although technologies make it more approachable,
+	few apps really try to cover every aspect of other more traditional
+	methods.
+opnion changed before:
+	it already changed, actually everytime a new technology appears it
+	ends up convincing with its easy approach.
+
+
+
+
+
+
+
+analysis on user:
+	the creation of questions and answers was a very effective challenge
+	that helped the user studying, maybe even more than the reviewing 
+	section.
+
+

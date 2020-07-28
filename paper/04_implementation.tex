@@ -1,0 +1,204 @@
+\chapter{Implementation}
+\label{cha:implementation}
+
+As mentioned above this project's tool consists of two parts, 
+the web application where users create and upload textbooks and questions for their common 
+topics and the alexa skill which is the main interaction tool used to study and practice.
+
+\section{Web Application}
+
+The web application is a full stack server that communicates both with the website as well 
+as the alexa skill. Its a platform where users can administrate and have an overview of 
+all the available topics, questions, textbooks as well as the ones created by the user.
+
+The architecture principles behind the design of this web application are the following:
+it aspires to be scalable, extensible, flexible and modern. Why exactly these adjectives
+and not others? Well as any living platform, the application will hopefully change and
+develop over time, if it is going to be used. Since one important criterion is to 
+create Communities of Practice overtime, by connecting users who intend to study
+similar topics, the software will have to be adaptable to any changes that might occur 
+in the future and so it needs to be scalable. Users will determine in what direction 
+the software should go, what features need to be added to make the whole studying 
+process of interacting with the website and uploading questions easier and more useful
+overtime, so it needs to be extensible. It needs to be flexible to changes, so it 
+adapts in any direction required and it needs to be modern to both take full advantage
+of the latest available technologies and ideas as well as pleasant to use, specially
+for users in the habit and knowledge of the latest technologies.
+
+The server side of this web application communicates both with the front-end shown
+in the browser, but also with the alexa skill, which fetches all the data stored 
+in the database.
+
+
+\section{Programming Environment}
+
+\subsection{Major Technologies}
+With the later in consideration, the programming technologies selected needed to regard
+exactly those aspects, so the system was developed with the following:
+
+
+\begin{itemize}
+\item \textbf{ReactJS:} Statistically the most widely used front-end framework, React
+    was created by the Facebook Team back in 2013. The most characteristic feature 
+    of React is its component-center design. In React the developers can very easily
+    separate concerns by extracting HTML, CSS and JavaScript from small snippets and
+    create "Components" which are higher level Abstractions of reusable pieces of code
+    that live in the application in a very Object-Oriented style.
+
+    With React the developers can in a very clean way extend or replace small pieces 
+    of their web application making it the perfect choice of technology to develop this
+    volatile learning platform, likely to change in any direction as required by its
+    users.
+
+\item \textbf{TypeScript:} A superset of JavaScript, TypeScript as the name implies
+    creates a layer of security over normal JavaScript code by statically analyzing 
+    types at compilation. This makes development safer, as it automatically covers 
+    most of the use needed by unity testing and showing the developer most potential dynamic 
+    bugs at compile time and making them obvious when refactoring/adapting and 
+    extending.
+
+
+\item \textbf{Go:} The choice for back-end was Google's young Programming Language, Go.
+    It provides the same advantages of TypeScript with its strict typing system. 
+    It also makes use of concurrency fairly easy, with its plain and simple syntax, making
+    it a very performant choice for the server that communicates with the front-end 
+    and alexa skill.
+
+\item \textbf{MongoDB:} A NoSQL database architecture, very performant and based on
+    JavaScript Object Notation (JSON) syntax, which is also used by all alexa skills to
+    communicate via HTML. It 
+
+\item \textbf{Auth0:} "a flexible, drop-in solution to add authentication and 
+    authorization services to your applications. Your team and organization can 
+    avoid the cost, time, and risk that comes with building your own solution to 
+    authenticate and authorize users". Its a perfect extension to add user 
+    functionalities to the web application by safeguarding their privacy and data with
+    a third party library specialized just in that.
+
+\item \textbf{Gorilla/Mux:} One of the most popular and well written server side 
+    frameworks written in the Go Programming Language, Mux aspires to create a perform
+    transition between server and single page requests efficient and performant.
+
+\end{itemize}
+
+
+\section{Front-end of Web Application}
+The front-end of the application consists on a very basic structure. Users need to login
+either with their google accounts via "0Auth Protocol" or by creating an account just 
+for the platform.
+
+\subsection{Topic Creation}
+After being logged in users can create 
+or join topics in topic selection page. The user is prompted with a text field that 
+uses fuzzy finding to quickly narrow the search down to similar topics available.
+It none was found, the user can press the Create button which opens a creation dialog.
+
+SHOW IMAGE HERE.
+
+\subsection{Questions and Textbooks}
+After they've or created a topic they will have two columns, one showing a list with
+all the textbooks provided by other users, the other with the list of all questions
+currently associated with the given topic.
+
+Both lists consist of expandable block which show firstly just the titles of both
+questions and textbooks and on click expand to show everything, which is the entire
+contents of the textbook on one hand and the multiple choice answers with the 
+correct marked one on the other.
+
+The idea behind this piece of software was to have commonly useful snippets of text
+with valuable information begin available at the time of creation of the new questions,
+so that for instance, if a user is currently studying in a course and wants to 
+practice a given topic, he can upload the corresponding textbook, read paragraph by 
+paragraph on the website and create questions as he comes up with important concepts
+we wishes to study.
+
+SHOW IMAGE HERE.
+
+\subsection{Potential Future Improvements}
+Another reason behind these parallel layout would be to easily add a feature in the future
+where students could bind given questions to a given textbook, or even a given location
+in the textbook, so that questions could be sorted by textbook or by chapter, etc.
+Also a similar idea, would be to read text snippets from each textbook out load 
+by the alexa skill, and prompt the related questions by the end of each paragraph for
+example. All of the aforementioned ideas can be easily incorporated in the web application
+by either creating new short components or by extending the existing ones.
+
+
+\subsection{Upload Dialogs}
+
+SHOW IMAGE HERE.
+
+The following shows the Dialogs shown when a user wants to upload a textbook or question.
+For the textbook uploads, a functionality was written in the server side back-end of
+the application, where one can upload the contents on the textbook and it will be 
+translated from PDF format to plain text and added to the input field. This ability
+has many advantages. Firstly, all text content is saved in the same format, and one
+that's easily changeable. Second, its format that can be send via HTML and directly
+read by the alexa skill. And third, it will be easier to add tags in the end of each 
+sentence, paragraph, chapter, etc, by writing extra words in the middle of the text.
+
+The question Dialog shows a very easy form with only two fields, and the user can add 
+any variable number of answers for each question.
+
+\section{User Management}
+
+Another non visible, but important feature is that all uploads are assigned to a user ID, 
+meaning that in the future following all the uploads and content from another user, or
+even creating groups with common interests, hence creating a proper Community of Practice
+would be trivial. All of these were left, since the idea was to just create the basic 
+functionalities to interact with a smart speaker and assess if that functionality in itself
+with be enough to attract and gather new users for newer niche technologies with the
+intend of learning.
+
+
+\subsection{Additional Technologies}
+
+Besides the main technologies used as a skeleton for the web application, 
+the following additional tools are also essential:
+
+\begin{itemize}
+\item \textbf{Docker:} One of the most popular tools for DevOps of our times. Docker 
+    containerization does two things. It makes deployment of the web application completely
+    cross platform and it creates an important layer of security and sandboxing 
+    via its containerization process.
+
+\item \textbf{Heroku:} "A cloud platform that lets companies build, deliver, monitor and 
+    scale apps — we're the fastest way to go from idea to URL, bypassing all those 
+    infrastructure headaches". Meaning, the perfect setup to quickly deploy a docker
+    container with the existing web application and to start testing with real users.
+    Another big advantage of Heroku is that it uses certified SSL endpoints recognized
+    by the Amazon Web Services, which means the alexa hosted skill can communicate 
+    with a server deployed in Heroku without further configuration.
+
+\end{itemize}
+
+\section{Alexa Skill}
+
+
+
+\section{User Management Roles}
+
+
+\section{Project Structure}
+
+
+\section{Application Workflow}
+
+
+\section{Components}
+
+
+\subsection{Component 1}
+
+
+\subsection{Component 2}
+
+
+\section{Modularity}
+According to Kevin J Sullivan et al. modularity is...............
+
+\section{Flexibility}
+Flexibility of our module is another.................
+
+\section{Summary}
+In a nutshell, in this chapter..................
