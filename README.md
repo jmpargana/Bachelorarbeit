@@ -1,4 +1,4 @@
-# Bachelorarbeit
+# Alexa Studying Assistant
 
 This repository contains a web application, which consists of both
 a website where users can create multiple choice questions and upload
