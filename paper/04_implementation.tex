@@ -174,31 +174,95 @@ the following additional tools are also essential:
 
 \section{Alexa Skill}
 
+The Alexa Skill is the other half of the application and contains the essential
+part of its interaction.
+As the name of the thesis implies, the core and principle point of 
+the project is to create an interactive learning experience using a smart speaker,
+although in reality the creation and connection between users during the process
+of creation topics and questions is just as important as the later. Nonetheless
+same features provided by the skill were key and essential to the whole experience.
+
+As most smart speaker applications, there is a fine balance needed for its success.
+The skill needs first and foremost to simplify the whole procedure of sitting down 
+reading the multiple choice questions from either cards (which would consume a lot 
+of time in their construction) or from the website or different sources, followed
+by a straightforward conversation with the device, where users can practice 
+simultaneously with other daily tasks, say washing the dishes, hanging clothes,
+sweeping the floors or even just by laying down in the couch. Whether this habits
+are effective or not is a whole different question and like with many things matters
+studying in pedagogy, this will most likely depend on the student. The main point
+that needs to be covered by the skill is to demonstrate the ability and 
+practicality to study and interact with the smart speaker device in a much 
+simpler and effortless way.
+
+For this to be achieved, a compromise had to be found regarding how to dose the 
+features provided by the skill and their clarity. It was settled to solely use 
+the speaker to fetch all questions from the web server given a topic title posing
+them to the user and keeping track of the correct answer pro question ratio.
+Besides this basic usage the skill can also explain how to upload and create more
+questions if needed. The pictures below show a valid conversation with the smart
+speaker.
+
+SHOW IMAGE HERE!!!
 
 
-\section{User Management Roles}
+\subsection{User Management Roles}
 
+The user management roles differ in the alexa skill from the web application.
+This was a design choice which might change in the future if needed. While
+the web application stores all public question, textbook and topic creation to
+a given user or email with the OAuth protocol, the skill solely keeps track
+of the sessions. The reason behind this decision, lies on the fact that 
+users will very likely want to repeat the same multiple choice questions more 
+than once to practice even if no new questions were uploaded. \say{Repetitio 
+est mater studiorum. Repetition is the mother of all learning.}
 
-\section{Project Structure}
+Accordingly once a user starts to interact with the smart speaker, a session is
+loaded where it keeps track of all answered questions pro topic, so if the student
+changes changes topics and return the last prompted question will still be prompted
+and no question will be repeated. Additionally, every time a session starts a topic
+is selected all its questions are shuffled so the user learns the proper answers
+and not the correct order of answers.
+
+\subsection{Python Hosted Skill}
+
+Originally the Go Programming Language was selected to write the implementation 
+of the alexa skill, or the same reasons referred in the listing **REFERENCE**.
+This plan changed to the alternative Python Programming Language since the 
+Amazon Web Services allow developers to host in a local server as an incentive, 
+that greatly simplifies and secures any vulnerabilities in the communication
+between skill and smart speaker device.
+
+Another great advantage of having an alexa skill hosted by the AWS is the 
+uncomplicated process of publishing the skill. This process is undertaking at the 
+moment, and most of the third party certification was skipped.
+
 
 
 \section{Application Workflow}
 
+The whole workflow of the skill ends up being fairly straightforward, the user 
+simply needs to:
 
-\section{Components}
+\begin{enumerate}
+        \item Visit the https://alexastudyingassistant.herokuapp.com.
+        \item Join or create a topic to study.
+        \item Upload questions or textbooks to share with other users.
+        \item Download and install the alexa skill \textbf{Studying Assistant}
+        \item Start the interaction by launching the skill.
+        \item Ask the available topics or start practice a given one.
+        \item Stop when done and check for the score.
+\end{enumerate}
 
+This workflow is of course divided in two steps, but users could and should 
+just iterate more often between the 5th and 7th step.
 
-\subsection{Component 1}
-
-
-\subsection{Component 2}
-
-
-\section{Modularity}
-According to Kevin J Sullivan et al. modularity is...............
-
-\section{Flexibility}
-Flexibility of our module is another.................
 
 \section{Summary}
-In a nutshell, in this chapter..................
+
+In a nutshell, in this chapter the basic architecture and potential of both
+applications, both the alexa skill and the web server and website were described.
+Some suggestions were also made on ways how the software could grow in the near 
+future, and although all the source code was unrevealed, the later can be examined
+following the https://github.com/jmpargana/AlexaStudyingAssistant URL, where a
+public open-source licensed repository was published.
