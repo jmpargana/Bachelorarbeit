@@ -8,12 +8,12 @@ topics and the alexa skill which is the main interaction tool used to study and 
 \section{Web Application}
 
 The web application is a full stack server that communicates both with the website as well 
-as the alexa skill. Its a platform where users can administrate and have an overview of 
+as the alexa skill. It is a platform where users can administrate and have an overview of 
 all the available topics, questions, textbooks as well as the ones created by the user.
 
 The architecture principles behind the design of this web application are the following:
 it aspires to be scalable, extensible, flexible and modern. Why exactly these adjectives
-and not others? Well as any living platform, the application will hopefully change and
+and not others? Well, as any living platform, the application will hopefully change and
 develop over time, if it is going to be used. Since one important criterion is to 
 create Communities of Practice overtime, by connecting users who intend to study
 similar topics, the software will have to be adaptable to any changes that might occur 
@@ -68,10 +68,10 @@ exactly those aspects, so the system was developed with the following:
     JavaScript Object Notation (JSON) syntax, which is also used by all alexa skills to
     communicate via HTML. It 
 
-\item \textbf{Auth0:} "a flexible, drop-in solution to add authentication and 
+\item \textbf{Auth0:} \textit{a flexible, drop-in solution to add authentication and 
     authorization services to your applications. Your team and organization can 
     avoid the cost, time, and risk that comes with building your own solution to 
-    authenticate and authorize users". Its a perfect extension to add user 
+    authenticate and authorize users} \cite{auth0}. It is a perfect extension to add user 
     functionalities to the web application by safeguarding their privacy and data with
     a third party library specialized just in that.
 
@@ -84,23 +84,50 @@ exactly those aspects, so the system was developed with the following:
 
 \section{Front-end of Web Application}
 The front-end of the application consists on a very basic structure. Users need to login
-either with their google accounts via "0Auth Protocol" or by creating an account just 
-for the platform.
+either with their google accounts via 0Auth Protocol or by creating an account just 
+for the platform, shown in \ref{fig:homepage} and \ref{fig:login}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/homepage.png}
+  \caption{Homepage of the web application.}
+  \label{fig:homepage}
+ \end{figure}
+ 
+ \begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/auth0.png}
+  \caption{Login dialog via Auth0 plugin.}
+  \label{fig:login}
+ \end{figure}
+
 
 \subsection{Topic Creation}
 After being logged in users can create 
 or join topics in topic selection page. The user is prompted with a text field that 
-uses fuzzy finding to quickly narrow the search down to similar topics available.
-It none was found, the user can press the Create button which opens a creation dialog.
+uses fuzzy finding, as shown in \ref{fig:topic_search} to quickly narrow the search down to similar topics available.
+If none was found, the user can press the Create button which opens a creation dialog \ref{fig:topic_creation}.
 
-SHOW IMAGE HERE.
+ \begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/topic_selection2.png}
+  \caption{The search for the topics uses a fuzzy finding mechanism.}
+  \label{fig:topic_search}
+ \end{figure}
+ 
+ \begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/topic_creation.png}
+  \caption{An example of a topic creation.}
+  \label{fig:topic_creation}
+ \end{figure}
 
 \subsection{Questions and Textbooks}
-After they've or created a topic they will have two columns, one showing a list with
+After they have created or loaded a topic they will have two columns, one showing a list with
 all the textbooks provided by other users, the other with the list of all questions
-currently associated with the given topic.
+currently associated with the given topic \ref{fig:topic}.
 
-Both lists consist of expandable block which show firstly just the titles of both
+Both lists consist of expandable blocks which show firstly just the titles of both
 questions and textbooks and on click expand to show everything, which is the entire
 contents of the textbook on one hand and the multiple choice answers with the 
 correct marked one on the other.
@@ -112,9 +139,18 @@ practice a given topic, he can upload the corresponding textbook, read paragraph
 paragraph on the website and create questions as he comes up with important concepts
 we wishes to study.
 
-SHOW IMAGE HERE.
-
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/topic.png}
+  \caption{Two columns with the uploaded textbooks and questions for referencing and studying 
+    inside the app.
+  }
+  \label{fig:topic}
+\end{figure}
+ 
+ 
 \subsection{Potential Future Improvements}
+\label{subsection:future}
 Another reason behind these parallel layout would be to easily add a feature in the future
 where students could bind given questions to a given textbook, or even a given location
 in the textbook, so that questions could be sorted by textbook or by chapter, etc.
@@ -126,9 +162,27 @@ by either creating new short components or by extending the existing ones.
 
 \subsection{Upload Dialogs}
 
-SHOW IMAGE HERE.
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/question_creation.png}
+  \caption{
+    The upload dialog for questions. The user can add as many answers as he/she wishes and
+    select the correct one.
+  }
+  \label{fig:questions}
+\end{figure}
 
-The following shows the Dialogs shown when a user wants to upload a textbook or question.
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{images/app/asa/textbook_upload.png}
+  \caption{
+    The upload dialog for textbooks. It can convert a large pdf file to text which can be
+    marked and manipulated more easily.
+  }
+  \label{fig:textbooks}
+\end{figure}
+
+The following shows the Dialogs shown when a user wants to upload a textbook (\ref{fig:textbooks}) or question (\ref{fig:questions}).
 For the textbook uploads, a functionality was written in the server side back-end of
 the application, where one can upload the contents on the textbook and it will be 
 translated from PDF format to plain text and added to the input field. This ability
@@ -162,9 +216,9 @@ the following additional tools are also essential:
     cross platform and it creates an important layer of security and sandboxing 
     via its containerization process.
 
-\item \textbf{Heroku:} "A cloud platform that lets companies build, deliver, monitor and 
+\item \textbf{Heroku:} \textit{A cloud platform that lets companies build, deliver, monitor and 
     scale apps — we're the fastest way to go from idea to URL, bypassing all those 
-    infrastructure headaches". Meaning, the perfect setup to quickly deploy a docker
+    infrastructure headaches} \cite{heroku}. Meaning, the perfect setup to quickly deploy a docker
     container with the existing web application and to start testing with real users.
     Another big advantage of Heroku is that it uses certified SSL endpoints recognized
     by the Amazon Web Services, which means the alexa hosted skill can communicate 
@@ -179,7 +233,7 @@ part of its interaction.
 As the name of the thesis implies, the core and principle point of 
 the project is to create an interactive learning experience using a smart speaker,
 although in reality the creation and connection between users during the process
-of creation topics and questions is just as important as the later. Nonetheless
+of creation topics and questions is just as important as the latter. Nonetheless
 same features provided by the skill were key and essential to the whole experience.
 
 As most smart speaker applications, there is a fine balance needed for its success.
@@ -201,9 +255,43 @@ the speaker to fetch all questions from the web server given a topic title posin
 them to the user and keeping track of the correct answer pro question ratio.
 Besides this basic usage the skill can also explain how to upload and create more
 questions if needed. The pictures below show a valid conversation with the smart
-speaker.
+speaker \ref{fig:start} \ref{fig:interaction} \ref{fig:change_topic} \ref{fig:stop}.
 
-SHOW IMAGE HERE!!!
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/app/studying_assistant/start.png}
+    \caption{Starting conversation with alexa skill.}
+    \label{fig:start}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/app/studying_assistant/interaction1.png}
+    \caption{Example of interaction after request to study given topic.}
+    \label{fig:interaction}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/app/studying_assistant/change_topic.png}
+    \caption{
+        Example of the user asking the alexa skill to switch the topic to be studied.
+    }
+    \label{fig:change_topic}
+  \end{minipage}
+  \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/app/studying_assistant/stop.png}
+    \caption{
+        Alexa let's you know the session's score after closing the skill.
+    }
+    \label{fig:stop}
+  \end{minipage}
+\end{figure}
+
 
 
 \subsection{User Management Roles}
@@ -214,12 +302,12 @@ the web application stores all public question, textbook and topic creation to
 a given user or email with the OAuth protocol, the skill solely keeps track
 of the sessions. The reason behind this decision, lies on the fact that 
 users will very likely want to repeat the same multiple choice questions more 
-than once to practice even if no new questions were uploaded. \say{Repetitio 
-est mater studiorum. Repetition is the mother of all learning.}
+than once to practice even if no new questions were uploaded. \textit{Repetitio 
+est mater studiorum; Repetition is the mother of all learning.}
 
 Accordingly once a user starts to interact with the smart speaker, a session is
 loaded where it keeps track of all answered questions pro topic, so if the student
-changes changes topics and return the last prompted question will still be prompted
+switches between topics and later returns, the last prompted question will still be prompted
 and no question will be repeated. Additionally, every time a session starts a topic
 is selected all its questions are shuffled so the user learns the proper answers
 and not the correct order of answers.
@@ -227,7 +315,7 @@ and not the correct order of answers.
 \subsection{Python Hosted Skill}
 
 Originally the Go Programming Language was selected to write the implementation 
-of the alexa skill, or the same reasons referred in the listing **REFERENCE**.
+of the alexa skill for the same reasons referred previously in its description.
 This plan changed to the alternative Python Programming Language since the 
 Amazon Web Services allow developers to host in a local server as an incentive, 
 that greatly simplifies and secures any vulnerabilities in the communication
@@ -263,6 +351,7 @@ just iterate more often between the 5th and 7th step.
 In a nutshell, in this chapter the basic architecture and potential of both
 applications, both the alexa skill and the web server and website were described.
 Some suggestions were also made on ways how the software could grow in the near 
-future, and although all the source code was unrevealed, the later can be examined
-following the https://github.com/jmpargana/AlexaStudyingAssistant URL, where a
+future, and although all the source code was unrevealed, the latter can be examined
+following the URL, 
+\href{https://github.com/jmpargana/AlexaStudyingAssistant}{https://github.com/jmpargana/AlexaStudyingAssistant}, where a
 public open-source licensed repository was published.

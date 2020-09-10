@@ -397,6 +397,7 @@ sensitive=false, morecomment=[s]{<!--}{-->}, morestring=[b]", morestring=[d]'}
 
 % Change Chapter/Section styles
 
+\usepackage[standardsections]{scrhack}
 \usepackage{titlesec}
 
 \newcommand{\allsectionformat}{\vspace*{5mm}\color{DarkBlue}\rmfamily\normalfont}
@@ -409,7 +410,8 @@ sensitive=false, morecomment=[s]{<!--}{-->}, morestring=[b]", morestring=[d]'}
 \addtokomafont{paragraph}{\allsectionformat}
 \addtokomafont{subparagraph}{\allsectionformat}
 
-\titlespacing*{\section}{0pt}{0pt}{0pt}
+%\titlespacing*{\section}{0pt}{0pt}{0pt}[0pt]
+%\titlespacing*{\subsection}{0pt}{0pt}{0pt}[0pt]
 \titleformat{\chapter}{\Huge}{\color{DarkBlue}\thechapter}{1pc}{\Huge\color{DarkBlue}\rmfamily\normalfont}
 
 

@@ -3,7 +3,7 @@
 % - titlepage changed
 % v1.6 - 2013-05-13
 
-\documentclass[twoside,11pt,titlepage,a4paper,english,bibliography=totocnumbered,listof=numbered]{scrbook}
+\documentclass[twoside,11pt,titlepage,a4paper,english,bibliography=totocnumbered,listof=numbered]{scrbook}[2019/07/29]
 
 % Template Style
 \include{style}
@@ -88,23 +88,24 @@ TCP
 		\end{spacing}
 		\vspace{2cm}
 		\Huge
-		\textcolor{DarkBlue}{\textbf{Thesis/Project Title}}\\
+		\textcolor{DarkBlue}{\textbf{Smart Speaker as Studying Assistant}}\\
 		\large
 		\vspace{2cm} 
-	 	Master/Bachelor-Thesis\\
+	 	Bachelor-Thesis\\
 	 	\vspace{2cm} 
 	 	Presented by\\
 	 	\vspace{0.3cm} 
-	 	\textbf{LastName, FirstName}\\
+	 	\textbf{Pargana Santos Silva, João Martim}\\
 	 	\vspace{0.3cm} 
-	 	111111\\
+	 	6807391\\
 	 	\vspace{2.5cm}
 	 	\begin{tabular}{ll}
 	 		First examiner: & Prof. Dr. Hendrik Drachsler\\
 	 		\\
 	 		Second examiner: & Prof. Dr. \\
 	 		\\
-	 		Supervisors: &  \\
+	 		Supervisor: & Dr. Jan Schneider \\
+
 	 	\end{tabular}
 	 	
 	\end{flushleft}
@@ -119,7 +120,8 @@ TCP
 \cleardoublepage
 
 \newpage
-\section*{\thispagestyle{empty}Erklärung}
+\thispagestyle{empty}
+\section*{Erklärung}
 Hiermit versichere ich, dass ich diese Arbeit selbst\-ständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. \\
 
 \noindent I hereby declare that I have created this work completely on my own and used no other sources or tools than the ones listed.
@@ -150,9 +152,9 @@ Frankfurt, \today \hspace{15 mm} Full Name
 %\part{}						% optional: use parts to structure your thesis
 \input{01_introduction}
 \input{02_related_work}
-\input{03_concept_and_design}
-\input{04_implementation}
-\input{05_evaluation}
+\input{03_implementation}
+\input{04_evaluation}
+\input{05_discussion}
 \input{06_conclusion}
 
 %--------------------------------------------------------------
@@ -168,7 +170,7 @@ Frankfurt, \today \hspace{15 mm} Full Name
 
 \begin{appendices}
 
-\input{a01_listings}
+\input{a01_questionnaire}
 
 
 \end{appendices}
